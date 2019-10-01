@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
-import Home from "../home/Home";
-import Login from "../login/Login";
-
-import "./App.css";
+import Login from "./components/login/Login";
+import DefaultLayout from "./containers/DefaultLayout";
 
 class App extends Component {
   render() {
@@ -13,7 +11,7 @@ class App extends Component {
         <Link to="/login">Login</Link>
 
         <Route path="/login" component={Login} />
-        <Route path="/" exact component={Home} />
+        <Route path="/" exact component={DefaultLayout} />
       </Router>
     );
   }
