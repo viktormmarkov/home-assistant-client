@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 
-class Login extends Component {
+class Register extends Component {
   render() {
     return (
       <div className="app flex-row align-items-center">
@@ -13,8 +13,8 @@ class Login extends Component {
                 <Card className="p-4">
                   <CardBody>
                     <Form>
-                      <h1>Login</h1>
-                      <p className="text-muted">Sign In to your account</p>
+                      <h1>Register</h1>
+                      <p className="text-muted">Create your account</p>
                       <InputGroup className="mb-3">
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>
@@ -27,7 +27,17 @@ class Login extends Component {
                           autoComplete="username"
                         />
                       </InputGroup>
-                      <InputGroup className="mb-4">
+                      <InputGroup className="mb-3">
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>@</InputGroupText>
+                        </InputGroupAddon>
+                        <Input
+                          type="text"
+                          placeholder="Email"
+                          autoComplete="email"
+                        />
+                      </InputGroup>
+                      <InputGroup className="mb-3">
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>
                             <i className="icon-lock"></i>
@@ -36,19 +46,29 @@ class Login extends Component {
                         <Input
                           type="password"
                           placeholder="Password"
-                          autoComplete="current-password"
+                          autoComplete="new-password"
+                        />
+                      </InputGroup>
+                      <InputGroup className="mb-4">
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>
+                            <i className="icon-lock"></i>
+                          </InputGroupText>
+                        </InputGroupAddon>
+                        <Input
+                          type="password"
+                          placeholder="Repeat password"
+                          autoComplete="new-password"
                         />
                       </InputGroup>
                       <Row>
-                        <Col xs="3">
-                          <Button color="primary" className="px-4">
-                            Login
-                          </Button>
+                        <Col xs="6">
+                          <Button color="success">Create Account</Button>
                         </Col>
-                        <Col xs="9" className="text-right">
-                          <Link to="/register">
+                        <Col xs="6" className="text-right">
+                          <Link to="/Login">
                             <Button color="link" className="px-0">
-                              Sign up
+                              Sign in
                             </Button>
                           </Link>
                         </Col>
@@ -65,4 +85,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Register;
