@@ -1,34 +1,19 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
-import Home from '../home/Home';
-import Login from '../login/Login';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import Home from "../home/Home";
+import Login from "../login/Login";
 
-
-import './App.css';
+import "./App.css";
 
 class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-          </ul>
-          <h3> Page content goes here</h3>
+        <Link to="/">Home</Link>
+        <Link to="/login">Login</Link>
 
-          <hr/>
-          <div>
-            <Switch>
-              <Route path="/login" component={Login} />
-              <Route path="/" exact component={Home} />
-            </Switch>
-          </div>
-        </div>
+        <Route path="/login" component={Login} />
+        <Route path="/" exact component={Home} />
       </Router>
     );
   }
