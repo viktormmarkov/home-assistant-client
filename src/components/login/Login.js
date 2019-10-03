@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Card, CardBody, Col, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
-import authentication from '../../services/authentication';
+import authenticationService from '../../services/authenticationService';
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -12,7 +12,7 @@ class Login extends Component {
       email: 'email2@email.com',
       password: 'sample'
     };
-    authentication.login(sampleData)
+    authenticationService.login(sampleData)
       .then(res => {
         const {status} = res;
         if (status === 302 || status === 200) {

@@ -1,6 +1,6 @@
 import apiBase from './apiBase';
 
-class Authentication {
+class AuthenticationService {
     login(credentials) {
         return apiBase.post('/login', credentials);
     }
@@ -9,4 +9,4 @@ class Authentication {
     }
 }
 
-export default new Authentication();
+export default new AuthenticationService();

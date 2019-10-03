@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Card, CardBody, Col, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
-import authentication from '../../services/authentication';
+import authenticationScreen from '../../services/authenticationService';
 
 class Register extends Component {
   constructor(props) {
@@ -11,11 +11,10 @@ class Register extends Component {
 
   register() {
     const user = {};
-    authentication.register(user)
+    authenticationScreen.register(user)
       .then(res => {
         console.log(res);
       })
-    // handle errors
   }
   render() {
     return (
