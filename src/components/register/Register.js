@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Card, CardBody, Col, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+import authentication from '../../services/authentication';
 
 class Register extends Component {
+  constructor(props) {
+    super(props);
+    this.register = this.register.bind(this);
+  }
+
+  register() {
+    const user = {};
+    authentication.register(user)
+      .then(res => {
+        console.log(res);
+      })
+    // handle errors
+  }
   render() {
     return (
       <Card className="p-4">
@@ -58,7 +72,7 @@ class Register extends Component {
             </InputGroup>
             <Row>
               <Col xs="6">
-                <Button color="success">Create Account</Button>
+                <Button color="primary" onClick={this.register}>Create Account</Button>
               </Col>
               <Col xs="6" className="text-right">
                 <Link to="/Login">
