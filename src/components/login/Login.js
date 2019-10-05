@@ -6,13 +6,15 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.login = this.login.bind(this);
+    this.state = {
+      email: '',
+      password: ''
+    }
   }
   login() {
-    const sampleData = {
-      email: 'email2@email.com',
-      password: 'sample'
-    };
-    authenticationService.login(sampleData)
+    const {email, password} = this.state;
+    const user = {email, password};
+    authenticationService.login(user)
       .then(res => {
         const {status} = res;
         if (status === 302 || status === 200) {
@@ -26,6 +28,12 @@ class Login extends Component {
         console.log('err:', err);
       }) 
   }
+
+  updateField(name, event) {
+    const value = event.target.value;
+    this.setState({[name]: value});
+  }
+
   render() {
     return (
       <Card className="p-4">
@@ -42,7 +50,9 @@ class Login extends Component {
             <Input
               type="text"
               placeholder="Username"
-              autoComplete="username"
+              autoComplete="email"
+              value={this.state.email}
+              onChange={this.updateField.bind(this, 'email')}
             />
           </InputGroup>
           <InputGroup className="mb-4">
@@ -55,6 +65,8 @@ class Login extends Component {
               type="password"
               placeholder="Password"
               autoComplete="current-password"
+              value={this.state.password}
+              onChange={this.updateField.bind(this, 'password')}
             />
           </InputGroup>
           <Row>
