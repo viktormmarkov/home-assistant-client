@@ -7,6 +7,9 @@ class AuthenticationService {
     register(user) {
         return apiBase.post('/register', user);
     }
+    checkToken() {
+        return apiBase.get('/checkToken');
+    }
 }
 
 export default new AuthenticationService();
