@@ -5,15 +5,17 @@ class Protected extends React.Component {
   constructor() {
     super();
     this.state = {
-      isLoggedIn: false
+      isLoggedIn: false,
+      loading: true
     }
   }
   componentDidMount() {
     authenticationService.checkToken()
       .then(res => {
-        this.setState({...this.state, isLoggedIn: true});
+        this.setState({...this.state, isLoggedIn: true, loading: false});
       })
       .catch(err => {
+        this.setState({...this.state, isLoggedIn: false, loading: false});
         // alert(`error: ${err}`);
       });
   }
@@ -22,8 +24,15 @@ class Protected extends React.Component {
     const props = this.props;
     if (this.state.isLoggedIn) {
       return props.children
+    } else if (this.state.loading) {
+      return null;
     } else {
-      return null
+      return (<Redirect
+        to={{
+          pathname: "/login",
+          state: {errors: this.state.errors}
+        }}
+      />)
     }
   }
 }
