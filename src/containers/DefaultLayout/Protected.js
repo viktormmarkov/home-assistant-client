@@ -14,21 +14,16 @@ class Protected extends React.Component {
         this.setState({...this.state, isLoggedIn: true});
       })
       .catch(err => {
-        alert(`error: ${err}`);
+        // alert(`error: ${err}`);
       });
   }
 
   render() {
     const props = this.props;
     if (this.state.isLoggedIn) {
-      return this.props.children
+      return props.children
     } else {
-      return (<Redirect
-        to={{
-          pathname: "/login",
-          state: {errors: this.state.errors}
-        }}
-      />)
+      return null
     }
   }
 }

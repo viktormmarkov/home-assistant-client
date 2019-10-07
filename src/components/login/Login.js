@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { Button, Card, CardBody, Col, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import authenticationService from '../../services/authenticationService';
 class Login extends Component {
@@ -75,12 +74,12 @@ class Login extends Component {
                 Login
               </Button>
             </Col>
-            <Col xs="9" className="text-right">
+            {/* <Col xs="9" className="text-right">
               <Link to="/register">
-                <Button color="link" className="px-0">
+                <Button color="link" className="px-0"> 
                 </Button>
               </Link>
-            </Col>
+            </Col> */}
           </Row>
         </Form>
       </CardBody>
