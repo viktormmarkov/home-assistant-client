@@ -10,7 +10,7 @@ class App extends Component {
       <Router>
         <Route path="/login" component={LoginScreen} />
         <Route path="/register" component={RegisterScreen} />
-        <Route path="/" exact component={DefaultLayout} />
+        <Route path="/" name="Home" render={props => <DefaultLayout {...props}/>} />
       </Router>
     );
   }

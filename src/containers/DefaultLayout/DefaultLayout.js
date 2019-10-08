@@ -5,11 +5,9 @@ import Application from './Application';
 class DefaultLayout extends Component {
   render() {
     return (
-      <div>
         <Protected {...this.props}>
           <Application {...this.props}></Application>
         </Protected>
-      </div>
     );
   }
 }

@@ -1,6 +1,6 @@
 import React, { Component, Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-// import * as router from 'react-router-dom';
+import * as router from 'react-router-dom';
 import { Container } from 'reactstrap';
 
 import {
@@ -12,22 +12,17 @@ import {
   AppSidebarForm,
   AppSidebarHeader,
   AppSidebarMinimizer,
-  // AppBreadcrumb2 as AppBreadcrumb,
-  // AppSidebarNav2 as AppSidebarNav,
+  AppBreadcrumb2 as AppBreadcrumb,
+  AppSidebarNav2 as AppSidebarNav,
 } from '@coreui/react';
 // sidebar nav config
-// import navigation from '../../_nav';
+import navigation from '../../_nav';
 // routes config
-// import routes from '../../routes';
+import routes from '../../routes';
 
 class Application extends Component {
 
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
-
-  signOut(e) {
-    e.preventDefault()
-    this.props.history.push('/login')
-  }
 
   render() {
     return (
@@ -42,17 +37,17 @@ class Application extends Component {
             <AppSidebarHeader />
             <AppSidebarForm />
             <Suspense>
-            {/* <AppSidebarNav navConfig={navi  gation} {...this.props} router={router}/> */}
+              <AppSidebarNav navConfig={navigation} {...this.props} router={router}/>
             </Suspense>
             <AppSidebarFooter />
             <AppSidebarMinimizer />
           </AppSidebar>
           <main className="main">
-            {/* <AppBreadcrumb appRoutes={routes} router={router}/> */}
+            <AppBreadcrumb appRoutes={routes} router={router}/>
             <Container fluid>
               <Suspense fallback={this.loading()}>
                 <Switch>
-                  {/* {routes.map((route, idx) => {
+                  {routes.map((route, idx) => {
                     return route.component ? (
                       <Route
                         key={idx}
@@ -63,7 +58,7 @@ class Application extends Component {
                           <route.component {...props} />
                         )} />
                     ) : (null);
-                  })} */}
+                  })}
                   <Redirect from="/" to="/" />
                 </Switch>
               </Suspense>
