@@ -59,7 +59,7 @@ class Application extends Component {
                         )} />
                     ) : (null);
                   })}
-                  <Redirect from="/" to="/" />
+                  <Redirect from="/" to="/dashboard" />
                 </Switch>
               </Suspense>
             </Container>
