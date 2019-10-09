@@ -7,15 +7,27 @@ class Register extends Component {
   constructor(props) {
     super(props);
     this.register = this.register.bind(this);
+    this.state = {
+      email: '',
+      password: '',
+      name: ''
+    }
   }
 
   register() {
-    const user = {};
+    const {email, password, name} = this.state;
+    const user = {email, password, name};
     authenticationScreen.register(user)
       .then(res => {
         console.log(res);
       })
   }
+
+  updateField(name, event) {
+    const value = event.target.value;
+    this.setState({[name]: value});
+  }
+
   render() {
     return (
       <Card className="p-4">
@@ -25,24 +37,28 @@ class Register extends Component {
             <p className="text-muted">Create your account</p>
             <InputGroup className="mb-3">
               <InputGroupAddon addonType="prepend">
-                <InputGroupText>
-                  <i className="icon-user"></i>
-                </InputGroupText>
-              </InputGroupAddon>
-              <Input
-                type="text"
-                placeholder="Username"
-                autoComplete="username"
-              />
-            </InputGroup>
-            <InputGroup className="mb-3">
-              <InputGroupAddon addonType="prepend">
                 <InputGroupText>@</InputGroupText>
               </InputGroupAddon>
               <Input
                 type="text"
                 placeholder="Email"
                 autoComplete="email"
+                value={this.state.email}
+                onChange={this.updateField.bind(this, 'email')}
+              />
+            </InputGroup>
+            <InputGroup className="mb-4">
+              <InputGroupAddon addonType="prepend">
+                <InputGroupText>
+                  <i className="icon-lock"></i>
+                </InputGroupText>
+              </InputGroupAddon>
+              <Input
+                type="text"
+                placeholder="Name"
+                autoComplete="name"
+                value={this.state.name}
+                onChange={this.updateField.bind(this, 'name')}
               />
             </InputGroup>
             <InputGroup className="mb-3">
@@ -55,18 +71,8 @@ class Register extends Component {
                 type="password"
                 placeholder="Password"
                 autoComplete="new-password"
-              />
-            </InputGroup>
-            <InputGroup className="mb-4">
-              <InputGroupAddon addonType="prepend">
-                <InputGroupText>
-                  <i className="icon-lock"></i>
-                </InputGroupText>
-              </InputGroupAddon>
-              <Input
-                type="password"
-                placeholder="Repeat password"
-                autoComplete="new-password"
+                value={this.state.password}
+                onChange={this.updateField.bind(this, 'password')}
               />
             </InputGroup>
             <Row>
