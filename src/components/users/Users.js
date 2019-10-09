@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Table } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 import userService from '../../services/userService';
 
@@ -8,7 +9,7 @@ function UserRow(props) {
 
   return (
     <tr key={user._id}>
-      <td>{user.name}</td>
+      <td><Link to={`/users/${user._id}`}>{user.name}</Link></td>
       <td>{user.email}</td>
       <td>{user.createdAt}</td>
       <td>{user._id}</td>
