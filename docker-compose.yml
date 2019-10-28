@@ -1,0 +1,15 @@
+version: '3'
+services:
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: ./server
+    volumes: [
+     "/node_modules",
+      "./server:/app"]
+  client:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+    ports: ["80:80"]
