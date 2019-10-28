@@ -1,3 +1,4 @@
+# should be in the parent dir of the project on level with client/server folders;
 version: '3'
 services:
   api:
