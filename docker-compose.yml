@@ -4,7 +4,7 @@ services:
   api:
     build:
       dockerfile: Dockerfile
-      context: ./server
+      context: ../server
     volumes: [
      "/node_modules",
       "./server:/app"]
@@ -12,5 +12,5 @@ services:
     restart: always
     build:
       dockerfile: Dockerfile
-      context: ./client
+      context: ./
     ports: ["80:80"]
