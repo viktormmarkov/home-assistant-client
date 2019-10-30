@@ -2,17 +2,16 @@ import React, { Component } from 'react';
 import { Table } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-import userService from '../../services/userService';
+import promotionService from '../../services/promotionService';
 
-function UserRow(props) {
-  const user = props.user
+function PromotionRow(props) {
+  const promotion = props.promotion
 
   return (
-    <tr key={user._id}>
-      <td><Link to={`/promotions/${user._id}`}>{user.name}</Link></td>
-      <td>{user.email}</td>
-      <td>{user.createdAt}</td>
-      <td>{user._id}</td>
+    <tr key={promotion._id}>
+      <td><Link to={`/promotions/${promotion._id}`}>{promotion.name}</Link></td>
+      <td>{promotion.createdAt}</td>
+      <td>{promotion._id}</td>
     </tr>
   )
 }
@@ -20,7 +19,7 @@ class Promotions extends Component {
   constructor() {
     super();
     this.state = {
-      users: [],
+      promotions: [],
       loading: false
     };
   }
@@ -29,31 +28,30 @@ class Promotions extends Component {
   }
   getUsers() {
     this.setState({loading: true});
-    userService.query()
+    promotionService.query()
       .then(res => {
-        this.setState({users: res.data, loading: false});
+        this.setState({promotions: res.data, loading: false});
       })
       .catch(err => {
         this.setState({loading: false});
       })
   }
   render() {
-    const {users, loading} = this.state
+    const {promotions, loading} = this.state
     return (
       <div className="animated fadeIn">
-          <h1>Users</h1>
+          <h1>Promotions</h1>
           <Table responsive hover>
             <thead>
               <tr>
                 <th>Name</th>
-                <th>Email</th>
                 <th>Date Created</th>
                 <th>Id</th>
               </tr>
             </thead>
             <tbody>
-                { users.map((user, index) => 
-                    <UserRow key={index} user={user} />) 
+                { promotions.map((promotion, index) => 
+                    <PromotionRow key={index} promotion={promotion} />) 
                 }
               </tbody>
           </Table>
