@@ -8,6 +8,10 @@ export default {
       name: 'Users',
       url: '/users',
       icon: 'icon-user',
+    }, {
+      name: 'Promotions',
+      url: '/promotions',
+      icon: 'icon-present',
     }
   ],
 };
