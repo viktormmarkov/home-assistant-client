@@ -1,7 +1,8 @@
 const pluralize = require('pluralize');
 const _ = require('lodash');
 const fs = require('fs');
-const srcDir = '../src';
+const srcDir = `${__dirname}/../src`;
+
 const componentFolder = `${srcDir}/components`
 const serviceDir = `${srcDir}/services`
 
@@ -13,7 +14,9 @@ const entityPlural = pluralize.plural(entityName);
 const serviceFileName = `${entityName}Service`;
 const serviceName = _.capitalize(serviceFileName);
 
-const serviceTemplate = `import ServiceBase from './serviceBase';
+const serviceTemplate = `/* generated via createView script */
+    import ServiceBase from './serviceBase';
+
     class ${serviceName} extends ServiceBase {
         constructor() {
             super('${entityPlural}');
@@ -22,10 +25,21 @@ const serviceTemplate = `import ServiceBase from './serviceBase';
 
     export default new ${serviceName}();`
 
-fs.appendFileSync(__dirname + `/${serviceDir}/${serviceFileName}.js`, serviceTemplate);
+fs.appendFileSync(`${serviceDir}/${serviceFileName}.js`, serviceTemplate);
 
-// get args
-// create service
+const entityComponentFolder = `${componentFolder}/${entityPlural}`;
+
+if (!fs.existsSync(entityComponentFolder)){
+    fs.mkdirSync(entityComponentFolder);
+}
+
+const entityCapitalized = _.capitalize(entityName);
+const componentGridView = `${pluralize.plural(entityCapitalized)}`;
+const componentSingleView = `${entityCapitalized}`;
+
+// fs.appendFileSync(`${entityComponentFolder}/${componentGridView}.js`, 'test');
+// fs.appendFileSync(`${entityComponentFolder}/${componentSingleView}.js`, 'test');
+
 // create grid
 // create view
 // add the view in nav
