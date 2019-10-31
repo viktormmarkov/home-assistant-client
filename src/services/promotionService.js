@@ -1,12 +1,9 @@
-import apiBase from './apiBase';
+import ServiceBase from './serviceBase';
 
-class UserService {
-    query() {
-        return apiBase.get('/promotions');
-    }
-    getItem(id) {
-        return apiBase.get(`/promotions/${id}`);
+class PromotionService extends ServiceBase {
+    constructor() {
+        super('promotions');
     }
 }
 
-export default new UserService();
+export default new PromotionService();

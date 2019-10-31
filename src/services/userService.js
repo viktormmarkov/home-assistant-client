@@ -1,11 +1,8 @@
-import apiBase from './apiBase';
+import ServiceBase from './serviceBase';
 
-class UserService {
-    query() {
-        return apiBase.get('/users');
-    }
-    getItem(id) {
-        return apiBase.get(`/users/${id}`);
+class UserService extends ServiceBase {
+    constructor() {
+        super('users');
     }
 }
 
