@@ -14,8 +14,8 @@ class ServiceBase {
     addItem(item) {
         return apiBase.post(`/${this.entity}`, item);
     }
-    updateItem(item) {
-        return apiBase.put(`/${this.entity}`, item);
+    updateItem(id, item) {
+        return apiBase.put(`/${this.entity}/${id}`, item);
     }
     deleteItem(id) {
         return apiBase.delete(`/${this.entity}/${id}`);
