@@ -1,31 +1,13 @@
 import React, { Component } from 'react';
-import { useHistory } from 'react-router-dom';
 import promotionService from '../../services/promotionService';
 import {
-  Badge,
   Button,
   Card,
   CardBody,
-  CardFooter,
-  CardHeader,
-  Col,
-  Collapse,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
-  Fade,
-  Form,
-  FormGroup,
-  FormText,
-  FormFeedback,
   Input,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupButtonDropdown,
-  InputGroupText,
-  Label,
-  Row,
 } from 'reactstrap';
+
+import EntityMenu from '../entityMenu/EntityMenu';
 
 class Promotion extends Component {
   constructor(context) {
@@ -68,11 +50,13 @@ class Promotion extends Component {
     const { promotionId, promotion} = this.state;
     let savePromise;
     if (promotionId === 'new') {
-      savePromise = promotionService.addItem([promotion])
+      savePromise = promotionService.addItem([promotion]);
     } else {
       savePromise = promotionService.updateItem(promotionId, promotion);
     }
-    savePromise.then(res => console.log(res), err => alert(err));
+    savePromise.then(res => {
+      this.props.history.pop();
+    }, err => alert(err));
   }
 
   deleteItem = () => {
@@ -85,26 +69,24 @@ class Promotion extends Component {
   }
 
   render() {
-    const {promotion, loading} = this.state
+    const {promotion} = this.state
           /* Add all of the properties, labels and loading state*/
 
     return (
       <div className="animated fadeIn">
-          <h1>Promotion {promotion.name}</h1>
-          <Button color="danger" onClick={this.deleteItem}> Delete </Button>
-          <Card>
-            <CardBody>
-              <Input
-                type="Text"
-                value={promotion.name}
-                onChange={this.updateField.bind(this, 'name')}
-              />
-                <Button onClick={this.saveItem}>
-                  Save
-                </Button>
-            </CardBody>
-          </Card>
-         
+        <div className="section-header">
+          <h3 className="inline">Promotion {promotion.name}</h3>
+          <EntityMenu saveItem={this.saveItem} deleteItem={this.saveItem} entity={promotion} {...this.props}/>
+        </div>
+        <Card>
+          <CardBody>
+            <Input
+              type="Text"
+              value={promotion.name}
+              onChange={this.updateField.bind(this, "name")}
+            />
+          </CardBody>
+        </Card>
       </div>
     );
   }

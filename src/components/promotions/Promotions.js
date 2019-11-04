@@ -36,13 +36,18 @@ class Promotions extends Component {
         this.setState({loading: false});
       })
   }
+
+  addItem = () => {
+    this.props.history.push("/promotions/new");
+  }
+
   render() {
-    const {promotions, loading} = this.state
+    const {promotions} = this.state
     return (
       <div className="animated fadeIn">
           <div className="section-header">
             <h3 class="inline">Promotions</h3>
-            <Button onClick={this.addItem} className="fright">Add</Button>
+            <Button onClick={this.addItem} className="fright btn-sm">Add</Button>
           </div>
 
           <Table responsive hover>

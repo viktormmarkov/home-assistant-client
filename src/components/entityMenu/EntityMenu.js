@@ -1,0 +1,18 @@
+import React from "react";
+import { Button } from "reactstrap";
+
+export default class EntityMenu extends React.Component {
+    render() {
+        const {saveItem, deleteItem, entity} = this.props;
+        return (
+          <div className="entity-menu fright">
+            <Button onClick={saveItem} className="btn-sm">
+              Save
+            </Button>
+            {entity._id && <Button onClick={deleteItem} className="btn-sm" color="danger">
+              Delete
+            </Button> }
+          </div>
+        );
+    };
+}
