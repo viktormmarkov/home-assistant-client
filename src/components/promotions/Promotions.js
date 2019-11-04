@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table } from 'reactstrap';
+import { Table, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 import promotionService from '../../services/promotionService';
@@ -40,7 +40,11 @@ class Promotions extends Component {
     const {promotions, loading} = this.state
     return (
       <div className="animated fadeIn">
-          <h1>Promotions</h1>
+          <div className="section-header">
+            <h3 class="inline">Promotions</h3>
+            <Button onClick={this.addItem} className="fright">Add</Button>
+          </div>
+
           <Table responsive hover>
             <thead>
               <tr>
