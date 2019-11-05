@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import promotionService from '../../services/promotionService';
 import {
-  Button,
+  Row,
+  FormGroup,
+  Label,
   Card,
   CardBody,
+  Col,
   Input,
 } from 'reactstrap';
 
@@ -39,8 +42,7 @@ class Promotion extends Component {
       })
   }
 
-  updateField(name, event) {
-    const value = event.target.value;
+  updateField = (name, value) => {
     const { promotion } = this.state;
     promotion[name] = value;
     this.setState({promotion});
@@ -69,22 +71,29 @@ class Promotion extends Component {
   }
 
   render() {
-    const {promotion} = this.state
-          /* Add all of the properties, labels and loading state*/
-
+    const { promotion } = this.state
+    /* Add all of the properties, labels and loading state*/
     return (
       <div className="animated fadeIn">
         <div className="section-header">
           <h3 className="inline">Promotion {promotion.name}</h3>
-          <EntityMenu saveItem={this.saveItem} deleteItem={this.saveItem} entity={promotion} {...this.props}/>
+          <EntityMenu saveItem={this.saveItem} deleteItem={this.deleteItem} entity={promotion} {...this.props}/>
         </div>
         <Card>
           <CardBody>
-            <Input
-              type="Text"
-              value={promotion.name}
-              onChange={this.updateField.bind(this, "name")}
-            />
+            <Row>
+              <Col>
+                <FormGroup>
+                  <Label htmlFor="name">Name</Label>
+                  <Input
+                    id="name"
+                    type="Text"
+                    value={promotion.name}
+                    onChange={(event) => this.updateField("name", event.target.value)}
+                  />
+                </FormGroup>
+              </Col>
+            </Row>
           </CardBody>
         </Card>
       </div>

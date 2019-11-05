@@ -51,7 +51,7 @@ class Promotions extends Component {
           </div>
 
           <Table responsive hover>
-            <thead>
+            <thead className="thead-light">
               <tr>
                 <th>Name</th>
                 <th>Date Created</th>
