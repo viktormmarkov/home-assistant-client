@@ -24,9 +24,9 @@ class Promotions extends Component {
     };
   }
   componentDidMount() {
-    this.getUsers();
+    this.getItems();
   }
-  getUsers() {
+  getItems() {
     this.setState({loading: true});
     promotionService.query()
       .then(res => {

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import promotionService from '../../services/promotionService';
+import ItemRow from '../common/ItemRow';
+
 import {
   Row,
   FormGroup,
@@ -10,7 +12,7 @@ import {
   Input,
 } from 'reactstrap';
 
-import EntityMenu from '../entityMenu/EntityMenu';
+import EntityMenu from '../common/EntityMenu';
 
 class Promotion extends Component {
   constructor(context) {
