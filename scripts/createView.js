@@ -15,15 +15,15 @@ const serviceFileName = `${entityName}Service`;
 const serviceName = _.capitalize(serviceFileName);
 
 const serviceTemplate = `/* generated via createView script */
-    import ServiceBase from './serviceBase';
+import ServiceBase from './serviceBase';
 
-    class ${serviceName} extends ServiceBase {
-        constructor() {
-            super('${entityPlural}');
-        }
+class ${serviceName} extends ServiceBase {
+    constructor() {
+        super('${entityPlural}');
     }
+}
 
-    export default new ${serviceName}();`
+export default new ${serviceName}();`
 
 fs.appendFileSync(`${serviceDir}/${serviceFileName}.js`, serviceTemplate);
 
@@ -91,7 +91,7 @@ class ${_.capitalize(entityPlural)} extends Component {
             </thead>
             <tbody>
                 { items.map((item, index) => 
-                    <ItemRow key={index} item={item} entityName=${entityPlural}/>) 
+                    <ItemRow key={index} item={item} entityName={'${entityPlural}'}/>) 
                 }
               </tbody>
           </Table>

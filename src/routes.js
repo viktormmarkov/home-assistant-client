@@ -3,6 +3,7 @@ import Users from './components/users/Users'
 import User from './components/users/User'
 import Promotions from './components/promotions/Promotions'
 import Promotion from './components/promotions/Promotion'
+import Products from './components/products/Products'
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -10,7 +11,9 @@ const routes = [
   { path: '/users', exact: true, name: 'Users', component: Users },
   { path: '/users/:id', exact: true, name: 'User Details', component: User },
   { path: '/promotions', exact: true, name: 'Promotion', component: Promotions },
-  { path: '/promotions/:id', exact: true, name: 'Promotion Details', component: Promotion }
+  { path: '/promotions/:id', exact: true, name: 'Promotion Details', component: Promotion },
+  { path: '/products', exact: true, name: 'Products', component: Products },
+
 ];
 
 export default routes;

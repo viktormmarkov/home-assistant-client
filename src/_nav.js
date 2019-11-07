@@ -12,6 +12,11 @@ export default {
       name: 'Promotions',
       url: '/promotions',
       icon: 'icon-present',
+    },
+    {
+      name: 'Products',
+      url: '/products',
+      icon: 'icon-present',
     }
   ],
 };
