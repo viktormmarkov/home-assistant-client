@@ -17,6 +17,11 @@ export default {
       name: 'Products',
       url: '/products',
       icon: 'icon-present',
+    },
+    {
+      name: 'Categories',
+      url: '/categories',
+      icon: 'icon-present',
     }
   ],
 };

@@ -4,6 +4,7 @@ import User from './components/users/User'
 import Promotions from './components/promotions/Promotions'
 import Promotion from './components/promotions/Promotion'
 import Products from './components/products/Products'
+import Categories from './components/categories/Categories'
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -13,6 +14,7 @@ const routes = [
   { path: '/promotions', exact: true, name: 'Promotion', component: Promotions },
   { path: '/promotions/:id', exact: true, name: 'Promotion Details', component: Promotion },
   { path: '/products', exact: true, name: 'Products', component: Products },
+  { path: '/categories', exact: true, name: 'Categories', component: Categories },
 
 ];
 
