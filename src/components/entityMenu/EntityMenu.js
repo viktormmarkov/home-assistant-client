@@ -6,12 +6,12 @@ export default class EntityMenu extends React.Component {
         const {saveItem, deleteItem, entity} = this.props;
         return (
           <div className="entity-menu fright">
-            <Button onClick={saveItem} className="btn-sm entity-menu-button">
-              {entity._id ? 'Update' : 'Save'}
-            </Button>
-            {entity._id && <Button onClick={deleteItem} className="btn-sm entity-menu-button" color="danger">
+             {entity._id && <Button onClick={deleteItem} className="btn-sm entity-menu-button" color="danger">
               Delete
             </Button> }
+            <Button onClick={saveItem} className="btn-sm entity-menu-button" color="primary">
+              {entity._id ? 'Update' : 'Save'}
+            </Button>
           </div>
         );
     };

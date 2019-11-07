@@ -92,6 +92,15 @@ class Promotion extends Component {
                     onChange={(event) => this.updateField("name", event.target.value)}
                   />
                 </FormGroup>
+                <FormGroup>
+                  <Label htmlFor="name">Name</Label>
+                  <Input
+                    id="name"
+                    type="Text"
+                    value={promotion.name}
+                    onChange={(event) => this.updateField("name", event.target.value)}
+                  />
+                </FormGroup>
               </Col>
             </Row>
           </CardBody>
