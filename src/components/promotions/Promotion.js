@@ -95,12 +95,12 @@ class Promotion extends Component {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label htmlFor="name">Name</Label>
+                  <Label htmlFor="price">Price</Label>
                   <Input
-                    id="name"
-                    type="Text"
-                    value={promotion.name}
-                    onChange={(event) => this.updateField("name", event.target.value)}
+                    id="price"
+                    type="number"
+                    value={promotion.price}
+                    onChange={(event) => this.updateField("price", event.target.value)}
                   />
                 </FormGroup>
               </Col>
