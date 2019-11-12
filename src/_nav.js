@@ -16,12 +16,17 @@ export default {
     {
       name: 'Products',
       url: '/products',
-      icon: 'icon-present',
+      icon: 'icon-star',
     },
     {
       name: 'Categories',
       url: '/categories',
-      icon: 'icon-present',
+      icon: 'icon-equalizer',
+    },
+    {
+      name: 'Shopping List',
+      url: '/productLists',
+      icon: 'icon-notebook',
     }
   ],
 };

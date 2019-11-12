@@ -46,7 +46,7 @@ import ${serviceFileName} from '../../services/${serviceFileName}';
 class ${_.capitalize(entityPlural)} extends Component {
   render() {
     return (
-      <EntityListBaseComponent service={${serviceFileName}} entityName={'${entityPlural}'}/>
+      <EntityListBaseComponent service={${serviceFileName}} entityName={'${entityPlural}' {...this.props}}/>
     )
   }
 }

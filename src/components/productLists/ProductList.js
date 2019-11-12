@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import promotionService from '../../services/promotionService';
+import productListService from '../../services/productListService';
 
 import {
   Row,
@@ -34,7 +34,7 @@ class Promotion extends Component {
   getPromotion() {
     const { promotionId } = this.state;
     this.setState({loading: true});
-    promotionService.getItem(promotionId)
+    productListService.getItem(promotionId)
       .then(res => {
         this.setState({promotion: res.data, loading: false});
       })
@@ -53,9 +53,9 @@ class Promotion extends Component {
     const { promotionId, promotion} = this.state;
     let savePromise;
     if (promotionId === 'new') {
-      savePromise = promotionService.addItem([promotion]);
+      savePromise = productListService.addItem([promotion]);
     } else {
-      savePromise = promotionService.updateItem(promotionId, promotion);
+      savePromise = productListService.updateItem(promotionId, promotion);
     }
     savePromise.then(res => {
       this.props.history.pop();
@@ -64,7 +64,7 @@ class Promotion extends Component {
 
   deleteItem = () => {
     const { promotionId } = this.state;
-    promotionService.deleteItem(promotionId)
+    productListService.deleteItem(promotionId)
       .then(res => console.log(res), err => alert(err))
       .then(res => {
         this.props.history.push('/promotions')
