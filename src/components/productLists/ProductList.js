@@ -13,30 +13,30 @@ import {
 
 import EntityMenu from '../common/EntityMenu';
 
-class Promotion extends Component {
+class ProductList extends Component {
   constructor(context) {
     super(context);
     this.state = {
-      promotionId: this.props.match.params.id,
-      promotion: {},
+      productListId: this.props.match.params.id,
+      productList: {},
       isNewEntity: false,
       loading: false
     };
   }
   componentDidMount() {
-    const { promotionId } = this.state;
-    if (promotionId === 'new') {
+    const { productListId } = this.state;
+    if (productListId === 'new') {
       this.setState({isNewEntity: true});
     } else {
-      this.getPromotion();
+      this.getProductList();
     }
   }
-  getPromotion() {
-    const { promotionId } = this.state;
+  getProductList() {
+    const { productListId } = this.state;
     this.setState({loading: true});
-    productListService.getItem(promotionId)
+    productListService.getItem(productListId)
       .then(res => {
-        this.setState({promotion: res.data, loading: false});
+        this.setState({productList: res.data, loading: false});
       })
       .catch(err => {
         this.setState({loading: false});
@@ -44,18 +44,18 @@ class Promotion extends Component {
   }
 
   updateField = (name, value) => {
-    const { promotion } = this.state;
-    promotion[name] = value;
-    this.setState({promotion});
+    const { productList } = this.state;
+    productList[name] = value;
+    this.setState({productList});
   }
 
   saveItem = () => {
-    const { promotionId, promotion} = this.state;
+    const { productListId, productList} = this.state;
     let savePromise;
-    if (promotionId === 'new') {
-      savePromise = productListService.addItem([promotion]);
+    if (productListId === 'new') {
+      savePromise = productListService.addItem([productList]);
     } else {
-      savePromise = productListService.updateItem(promotionId, promotion);
+      savePromise = productListService.updateItem(productListId, productList);
     }
     savePromise.then(res => {
       this.props.history.pop();
@@ -63,22 +63,19 @@ class Promotion extends Component {
   }
 
   deleteItem = () => {
-    const { promotionId } = this.state;
-    productListService.deleteItem(promotionId)
+    const { productListId } = this.state;
+    productListService.deleteItem(productListId)
       .then(res => console.log(res), err => alert(err))
-      .then(res => {
-        this.props.history.push('/promotions')
-      });
   }
 
   render() {
-    const { promotion } = this.state
+    const { productList } = this.state
     /* Add all of the properties, labels and loading state*/
     return (
       <div className="animated fadeIn">
         <div className="section-header">
-          <h3 className="inline">Promotion {promotion.name}</h3>
-          <EntityMenu saveItem={this.saveItem} deleteItem={this.deleteItem} entity={promotion} {...this.props}/>
+          <h3 className="inline">Product List {productList.name}</h3>
+          <EntityMenu saveItem={this.saveItem} deleteItem={this.deleteItem} entity={productList} {...this.props}/>
         </div>
         <Card>
           <CardBody>
@@ -89,17 +86,8 @@ class Promotion extends Component {
                   <Input
                     id="name"
                     type="Text"
-                    value={promotion.name}
+                    value={productList.name}
                     onChange={(event) => this.updateField("name", event.target.value)}
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <Label htmlFor="price">Price</Label>
-                  <Input
-                    id="price"
-                    type="number"
-                    value={promotion.price}
-                    onChange={(event) => this.updateField("price", event.target.value)}
                   />
                 </FormGroup>
               </Col>
@@ -111,4 +99,4 @@ class Promotion extends Component {
   }
 }
 
-export default Promotion;
+export default ProductList;
