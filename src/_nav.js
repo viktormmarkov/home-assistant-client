@@ -25,7 +25,7 @@ export default {
     },
     {
       name: 'Shopping List',
-      url: '/productLists',
+      url: '/shoppingLists',
       icon: 'icon-notebook',
     }
   ],
