@@ -19,8 +19,8 @@ export default class EntityListBaseComponent extends React.Component {
   getItems() {
     this.setState({loading: true});
     this.service.query()
-      .then(res => {
-        this.setState({items: res.data, loading: false});
+      .then(items => {
+        this.setState({items, loading: false});
       })
       .catch(err => {
         this.setState({loading: false});
