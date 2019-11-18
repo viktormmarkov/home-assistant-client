@@ -12,6 +12,7 @@ export default class EntityMenu extends React.Component {
             <Button onClick={saveItem} className="btn-sm entity-menu-button" color="primary">
               {entity._id ? 'Update' : 'Save'}
             </Button>
+            {this.props.children}
           </div>
         );
     };

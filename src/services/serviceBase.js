@@ -3,22 +3,26 @@ import apiBase from './apiBase';
 class ServiceBase {
     constructor(entity) {
         this.entity = entity;
+        this.api = apiBase
     }
 
     query() {
-        return apiBase.get(`/${this.entity}`);
+        return this.api.get(`/${this.entity}`)
+            .then(res => {
+                return res.data;
+            });
     }
     getItem(id) {
-        return apiBase.get(`/${this.entity}/${id}`);
+        return this.api.get(`/${this.entity}/${id}`);
     }
     addItem(item) {
-        return apiBase.post(`/${this.entity}`, item);
+        return this.api.post(`/${this.entity}`, item);
     }
     updateItem(id, item) {
-        return apiBase.put(`/${this.entity}/${id}`, item);
+        return this.api.put(`/${this.entity}/${id}`, item);
     }
     deleteItem(id) {
-        return apiBase.delete(`/${this.entity}/${id}`);
+        return this.api.delete(`/${this.entity}/${id}`);
     }
 }
 
