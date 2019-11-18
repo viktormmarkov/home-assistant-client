@@ -6,7 +6,7 @@ import EntityListBaseComponent from '../common/EntityListBaseComponent';
 class Products extends Component {
   render() {
     return (
-      <EntityListBaseComponent service={productService} entityName={'products'}/>
+      <EntityListBaseComponent service={productService} entityName={'products'}  {...this.props}/>
     )
   }
 }

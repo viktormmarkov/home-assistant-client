@@ -101,7 +101,7 @@ class ShoppingList extends Component {
     return (
       <div className="animated fadeIn">
         <div className="section-header">
-          <h3 className="inline">Product List {shoppingList.name}</h3>
+          <h3 className="inline">Shopping List {shoppingList.name}</h3>
           <EntityMenu saveItem={this.saveItem} deleteItem={this.deleteItem} entity={shoppingList} {...this.props}/>
         </div>
         <Card>

@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import EntityListBaseComponent from '../common/EntityListBaseComponent';
 import shoppingListService from '../../services/shoppingListService';
