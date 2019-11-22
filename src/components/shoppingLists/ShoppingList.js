@@ -1,11 +1,5 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import shoppingListService from '../../services/shoppingListService';
-const PRODUCT_LIST_DATA = [{
-  _id: 'someid',
-  name: 'Chicken Wings',
-  price: 10,
-  quantity: 20
-}]
 
 import {
   Row,
@@ -20,21 +14,21 @@ import {
 import EntityMenu from '../common/EntityMenu';
 
 function ShoppingItem(props) {
-  const [product] = useState(props.product);
+  const item = props.item;
   return (
     <div>
-      <span>{product.name}</span>
-      <span>{product.price}</span>    
-      <span>{product.quantity}</span>    
+      <span>{item.name}</span>
+      <span>{item.price}</span>    
+      <span>{item.quantity}</span>    
     </div>
   )
 }
 
 function ShoppingListItems(props) {
-  const [products] = useState(props.products);
+  const items = props.items;
   return (
     <section>
-      {products.map((p, i) => <ShoppingItem product={p} key={p._id} />)}
+      {items.map((p, i) => <ShoppingItem item={p} key={p._id} />)}
     </section>
   );
 }
@@ -47,7 +41,7 @@ class ShoppingList extends Component {
       shoppingList: {},
       isNewEntity: false,
       loading: false,
-      products: [...PRODUCT_LIST_DATA]
+      items: []
     };
   }
   componentDidMount() {
@@ -64,16 +58,24 @@ class ShoppingList extends Component {
     shoppingListService.getItem(shoppingListId)
       .then(res => {
         this.setState({shoppingList: res.data, loading: false});
+        this.getShoppingItems();
       })
       .catch(err => {
         this.setState({loading: false});
       })
   }
 
+  getShoppingItems() {
+    const { shoppingListId } = this.state;
+    shoppingListService.getShoppingItems(shoppingListId).then(items => { 
+      this.setState({items})
+    });
+  }
+
   updateField = (name, value) => {
     const { shoppingList } = this.state;
     shoppingList[name] = value;
-    this.setState({shoppingList});
+    this.setState({ shoppingList });
   }
 
   saveItem = () => {
@@ -102,7 +104,12 @@ class ShoppingList extends Component {
       <div className="animated fadeIn">
         <div className="section-header">
           <h3 className="inline">Shopping List {shoppingList.name}</h3>
-          <EntityMenu saveItem={this.saveItem} deleteItem={this.deleteItem} entity={shoppingList} {...this.props}/>
+          <EntityMenu
+            saveItem={this.saveItem}
+            deleteItem={this.deleteItem}
+            entity={shoppingList}
+            {...this.props}
+          />
         </div>
         <Card>
           <CardBody>
@@ -114,14 +121,22 @@ class ShoppingList extends Component {
                     id="name"
                     type="Text"
                     value={this.state.shoppingList.name}
-                    onChange={(event) => this.updateField("name", event.target.value)}
+                    onChange={event =>
+                      this.updateField("name", event.target.value)
+                    }
                   />
                 </FormGroup>
               </Col>
             </Row>
+          </CardBody>
+        </Card>
+        <Card>
+          <CardBody>
             <Row>
               <Col>
-                <ShoppingListItems products={this.state.products}></ShoppingListItems>
+                <ShoppingListItems
+                  items={this.state.items}
+                ></ShoppingListItems>
               </Col>
             </Row>
           </CardBody>
