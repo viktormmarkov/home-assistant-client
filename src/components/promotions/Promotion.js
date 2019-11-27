@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import Dropdown from "../common/Dropdown"
+
 import promotionService from '../../services/promotionService';
 import shoppingListService from "../../services/shoppingListService";
+import productService from "../../services/productService";
 
 import {
   Row,
@@ -27,6 +30,10 @@ class Promotion extends Component {
     };
   }
   componentDidMount() {
+    this.updateStatePromotion();
+    this.updateStateProducts();
+  }
+  updateStatePromotion() {
     const { promotionId } = this.state;
     if (promotionId === "new") {
       this.setState({ isNewEntity: true });
@@ -34,6 +41,13 @@ class Promotion extends Component {
       this.getPromotion();
       this.getShoppingList();
     }
+  }
+  updateStateProducts() {
+    productService.query().then(products => {
+      this.setState({
+        products
+      });
+    });
   }
   getPromotion() {
     const { promotionId } = this.state;
@@ -136,6 +150,21 @@ class Promotion extends Component {
                       this.updateField("price", event.target.value)
                     }
                   />
+                </FormGroup>
+                <FormGroup>
+                  <Label htmlFor="product">Product</Label>
+                  <Dropdown 
+                    items={this.state.products}
+                    value='_id'
+                    text='name'
+                    onChange={(selectedItem) => {
+                      console.log(selectedItem);
+                      this.updateField("product", selectedItem._id)
+                    }}
+                    placeholder="Select Main Product"
+                    >
+
+                  </Dropdown>
                 </FormGroup>
               </Col>
             </Row>
