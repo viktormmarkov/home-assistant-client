@@ -30,8 +30,8 @@ class Users extends Component {
   getUsers() {
     this.setState({loading: true});
     userService.query()
-      .then(res => {
-        this.setState({users: res.data, loading: false});
+      .then(users => {
+        this.setState({users: users, loading: false});
       })
       .catch(err => {
         this.setState({loading: false});
