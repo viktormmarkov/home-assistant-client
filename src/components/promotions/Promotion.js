@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import Dropdown from "../common/Dropdown"
+import React, { Component } from "react";
+import Dropdown from "../common/Dropdown";
 
-import promotionService from '../../services/promotionService';
+import promotionService from "../../services/promotionService";
 import shoppingListService from "../../services/shoppingListService";
 import productService from "../../services/productService";
 
@@ -14,9 +14,9 @@ import {
   Col,
   Input,
   Button
-} from 'reactstrap';
+} from "reactstrap";
 
-import EntityMenu from '../common/EntityMenu';
+import EntityMenu from "../common/EntityMenu";
 
 class Promotion extends Component {
   constructor(context) {
@@ -62,10 +62,9 @@ class Promotion extends Component {
       });
   }
   getShoppingList() {
-    shoppingListService.query()
-      .then(list => {
-        this.setState({ shoppingList: list[0]});
-      })
+    shoppingListService.query().then(list => {
+      this.setState({ shoppingList: list[0] });
+    });
   }
 
   updateField = (name, value) => {
@@ -92,16 +91,17 @@ class Promotion extends Component {
 
   deleteItem = () => {
     const { promotionId } = this.state;
-    promotionService
-      .deleteItem(promotionId)
-      .then(res => console.log(res), err => alert(err));
+    promotionService.deleteItem(promotionId).then(
+      res => console.log(res),
+      err => alert(err)
+    );
   };
 
   addItemToList = () => {
     const { promotion, shoppingList } = this.state;
 
     shoppingListService.addPromotionToList(shoppingList._id, promotion);
-  }
+  };
 
   render() {
     const { promotion } = this.state;
@@ -153,18 +153,16 @@ class Promotion extends Component {
                 </FormGroup>
                 <FormGroup>
                   <Label htmlFor="product">Product</Label>
-                  <Dropdown 
+                  <Dropdown
                     items={this.state.products}
-                    value='_id'
-                    text='name'
-                    onChange={(selectedItem) => {
-                      console.log(selectedItem);
+                    valueField="_id"
+                    text="name"
+                    onChange={selectedItem =>
                       this.updateField("product", selectedItem._id)
-                    }}
+                    }
                     placeholder="Select Main Product"
-                    >
-
-                  </Dropdown>
+                    value={promotion.product}
+                  ></Dropdown>
                 </FormGroup>
               </Col>
             </Row>

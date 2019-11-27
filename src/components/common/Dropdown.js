@@ -1,6 +1,6 @@
+import _ from 'lodash';
 import React, { Component, Fragment } from 'react';
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
-
 
 export default class SmartDropdown extends Component {
     constructor() {
@@ -14,32 +14,37 @@ export default class SmartDropdown extends Component {
             selectedIndex: null,
         };
     }
+    getSelected = (value) => {
+        const selectedIndex = _.findIndex(this.props.items, i => i._id === value);
+        if (selectedIndex > -1) {
+            return this.props.items[selectedIndex];
+        } else {
+            return {};
+        }
+    }
     toggle = () => {
         this.setState({
             isOpen: !this.state.isOpen
         })
     }
     updateValue = (e) => {
-        this.setState({
-            selectedItem: this.props.items[e.target.value],
-            selectedIndex: e.target.value
-        });
         if (this.props.onChange) {
             this.props.onChange(this.props.items[e.target.value]);            
         }
     }
     render() {
-        const {placeholder, selectedItem} = this.state;
-        const {value, text} = this.props;
+        const {placeholder} = this.state;
+        const {valueKey, text, value} = this.props;
+        const selected = this.getSelected(value);
         const items = this.props.items || [];
         return (
             <Dropdown isOpen={this.state.isOpen} toggle={() => {this.toggle();}}>
                 <DropdownToggle caret>
-                    {selectedItem[text] || this.props.placeholder || placeholder}
+                    {selected[text] || this.props.placeholder || placeholder}
                 </DropdownToggle>
                 <DropdownMenu>
                     {items.map((i, index) => (<DropdownItem 
-                    key={i[value]} 
+                    key={i[valueKey]} 
                     onClick={this.updateValue} 
                     value={index} 
                     active={index === this.state}>
