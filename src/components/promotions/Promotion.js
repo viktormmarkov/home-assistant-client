@@ -178,6 +178,12 @@ class Promotion extends Component {
                     ></DatePeriodPicker>
                   </div>
                 </FormGroup>
+                <FormGroup>
+                  <Label>
+                    Status
+                  </Label>
+                  
+                </FormGroup>
               </Col>
             </Row>
           </CardBody>

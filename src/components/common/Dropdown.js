@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 
 export default class SmartDropdown extends Component {
