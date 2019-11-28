@@ -8,6 +8,8 @@ import Product from "./components/products/Product";
 import Categories from './components/categories/Categories'
 import ShoppingLists from './components/shoppingLists/ShoppingLists'
 import ShoppingList from './components/shoppingLists/ShoppingList'
+import Preferences from "./components/shoppingLists/ShoppingLists";
+import Preference from "./components/shoppingLists/ShoppingList";
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -21,6 +23,9 @@ const routes = [
   { path: '/categories', exact: true, name: 'Categories', component: Categories },
   { path: '/shoppingLists', exact: true, name: 'Shopping Lists', component: ShoppingLists },
   { path: '/shoppingLists/:id', exact: true, name: 'Shopping List', component: ShoppingList },
+  { path: '/shoppingLists/:id', exact: true, name: 'Shopping List', component: ShoppingList },
+  { path: '/preferences', exact: true, name: 'Preferences List', component: Preferences },
+  { path: '/preferences/:id', exact: true, name: 'Preference', component: Preference },
 
 ];
 

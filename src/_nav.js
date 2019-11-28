@@ -1,32 +1,39 @@
 export default {
   items: [
     {
-      name: 'Dashboard',
-      url: '/dashboard',
-      icon: 'icon-speedometer',
-    }, {
-      name: 'Users',
-      url: '/users',
-      icon: 'icon-user',
-    }, {
-      name: 'Promotions',
-      url: '/promotions',
-      icon: 'icon-present',
+      name: "Dashboard",
+      url: "/dashboard",
+      icon: "icon-speedometer"
     },
     {
-      name: 'Products',
-      url: '/products',
-      icon: 'icon-star',
+      name: "Users",
+      url: "/users",
+      icon: "icon-user"
     },
     {
-      name: 'Categories',
-      url: '/categories',
-      icon: 'icon-equalizer',
+      name: "Promotions",
+      url: "/promotions",
+      icon: "icon-present"
     },
     {
-      name: 'Shopping List',
-      url: '/shoppingLists',
-      icon: 'icon-notebook',
+      name: "Products",
+      url: "/products",
+      icon: "icon-star"
+    },
+    {
+      name: "Categories",
+      url: "/categories",
+      icon: "icon-equalizer"
+    },
+    {
+      name: "Shopping List",
+      url: "/shoppingLists",
+      icon: "icon-notebook"
+    },
+    {
+      name: "User Preferences",
+      url: "/preferences",
+      icon: "icon-settings"
     }
-  ],
+  ]
 };
