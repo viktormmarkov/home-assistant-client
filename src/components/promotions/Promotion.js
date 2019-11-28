@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import Dropdown from "../common/Dropdown";
-
+import { Dropdown, DatePeriodPicker } from "../common";
 import promotionService from "../../services/promotionService";
 import shoppingListService from "../../services/shoppingListService";
 import productService from "../../services/productService";
@@ -163,6 +162,12 @@ class Promotion extends Component {
                     placeholder="Select Main Product"
                     value={promotion.product}
                   ></Dropdown>
+                </FormGroup>
+                <FormGroup>
+                  <Label htmlFor="period">Period</Label>
+                  <div>
+                    <DatePeriodPicker></DatePeriodPicker>
+                  </div>
                 </FormGroup>
               </Col>
             </Row>

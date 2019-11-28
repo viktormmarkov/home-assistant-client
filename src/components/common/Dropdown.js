@@ -31,6 +31,9 @@ export default class SmartDropdown extends Component {
         if (this.props.onChange) {
             this.props.onChange(this.props.items[e.target.value]);            
         }
+        this.setState({
+            selectedIndex: e.target.value
+        });
     }
     render() {
         const {placeholder} = this.state;
@@ -47,7 +50,7 @@ export default class SmartDropdown extends Component {
                     key={i[valueKey]} 
                     onClick={this.updateValue} 
                     value={index} 
-                    active={index === this.state}>
+                    active={index === this.state.selectedIndex}>
                         {i[text]}
                     </DropdownItem>))}
                 </DropdownMenu>
