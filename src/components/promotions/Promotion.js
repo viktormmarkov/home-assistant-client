@@ -166,7 +166,16 @@ class Promotion extends Component {
                 <FormGroup>
                   <Label htmlFor="period">Period</Label>
                   <div>
-                    <DatePeriodPicker></DatePeriodPicker>
+                    <DatePeriodPicker 
+                      startDate={promotion.startDate}
+                      endDate={promotion.endDate}
+                      onStartChange={
+                        selectedDate => this.updateField("startDate", selectedDate)
+                      }
+                      onEndChange={
+                        selectedDate => this.updateField("endDate", selectedDate)
+                      }
+                    ></DatePeriodPicker>
                   </div>
                 </FormGroup>
               </Col>

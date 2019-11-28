@@ -7,37 +7,41 @@ export default class CustomDatepicker extends React.Component {
     constructor() {
         super()
         this.state = {
-            startDate: null,
-            endDate: null,
+            startDate: new Date(),
+            endDate: new Date(),
         };
     }
     setStartDate = (newDate) => {
         this.setState({
             startDate: newDate
         });
+        this.props.onStartChange(newDate);
     }
     setEndDate = (newDate) => {
         this.setState({
             endDate: newDate
         });
+        this.props.onEndChange(newDate);
     }
     render() {
+        const selectedStart = new Date(this.props.startDate);
+        const selectedEnd = new Date(this.props.endDate);
         return (
             <Fragment>
                 <Label className="pr-2">From</Label>
-                <DatePicker
+                {!!this.props.startDate && <DatePicker
                     className="form-control"
                     dateFormat={DATE_FORMAT}
-                    selected={this.state.startDate}
+                    selected={selectedStart}
                     onChange={this.setStartDate}
-                />
+                />}
                 <Label className="px-2">To</Label>
-                <DatePicker
-                    className="form-control"
-                    dateFormat={DATE_FORMAT}
-                    selected={this.state.endDate}
-                    onChange={this.setEndDate}>
-                </DatePicker>
+                {!!this.props.endDate && <DatePicker
+                        className="form-control"
+                        dateFormat={DATE_FORMAT}
+                        selected={selectedEnd}
+                        onChange={this.setEndDate}>
+                </DatePicker>}
             </Fragment>
         )
     }
