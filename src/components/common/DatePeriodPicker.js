@@ -24,24 +24,26 @@ export default class CustomDatepicker extends React.Component {
         this.props.onEndChange(newDate);
     }
     render() {
+        const validStart = !!this.props.startDate;
+        const validEnd = !!this.props.endDate;
         const selectedStart = new Date(this.props.startDate);
         const selectedEnd = new Date(this.props.endDate);
         return (
             <Fragment>
                 <Label className="pr-2">From</Label>
-                {!!this.props.startDate && <DatePicker
+                <DatePicker
                     className="form-control"
                     dateFormat={DATE_FORMAT}
-                    selected={selectedStart}
+                    selected={validStart ? selectedStart: this.state.startDate}
                     onChange={this.setStartDate}
-                />}
+                />
                 <Label className="px-2">To</Label>
-                {!!this.props.endDate && <DatePicker
-                        className="form-control"
-                        dateFormat={DATE_FORMAT}
-                        selected={selectedEnd}
-                        onChange={this.setEndDate}>
-                </DatePicker>}
+               <DatePicker
+                    className="form-control"
+                    dateFormat={DATE_FORMAT}
+                    selected={validEnd ? selectedEnd: this.state.endDate}
+                    onChange={this.setEndDate}
+                />
             </Fragment>
         )
     }
