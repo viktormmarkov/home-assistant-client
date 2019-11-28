@@ -46,7 +46,6 @@ export default class EntityListBaseComponent extends React.Component {
                 <th>Name</th>
                 <th>Date Created</th>
                 <th>Id</th>
-
               </tr>
             </thead>
             <tbody>

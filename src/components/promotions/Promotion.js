@@ -1,9 +1,5 @@
 import React, { Component } from "react";
 import { Dropdown, DatePeriodPicker } from "../common";
-import promotionService from "../../services/promotionService";
-import shoppingListService from "../../services/shoppingListService";
-import productService from "../../services/productService";
-
 import {
   Row,
   FormGroup,
@@ -14,9 +10,23 @@ import {
   Input,
   Button
 } from "reactstrap";
-
 import EntityMenu from "../common/EntityMenu";
 
+import promotionService from "../../services/promotionService";
+import shoppingListService from "../../services/shoppingListService";
+import productService from "../../services/productService";
+
+const STATUSES = [{
+    value: 'active',
+    text: 'Active'  
+  }, {
+    value: 'expired',
+    text: 'Expired'
+  }, {
+    value: 'pending',
+    text: 'Pending'
+  }
+];
 class Promotion extends Component {
   constructor(context) {
     super(context);
@@ -166,23 +176,30 @@ class Promotion extends Component {
                 <FormGroup>
                   <Label htmlFor="period">Period</Label>
                   <div>
-                    <DatePeriodPicker 
+                    <DatePeriodPicker
                       startDate={promotion.startDate}
                       endDate={promotion.endDate}
-                      onStartChange={
-                        selectedDate => this.updateField("startDate", selectedDate)
+                      onStartChange={selectedDate =>
+                        this.updateField("startDate", selectedDate)
                       }
-                      onEndChange={
-                        selectedDate => this.updateField("endDate", selectedDate)
+                      onEndChange={selectedDate =>
+                        this.updateField("endDate", selectedDate)
                       }
                     ></DatePeriodPicker>
                   </div>
                 </FormGroup>
                 <FormGroup>
-                  <Label>
-                    Status
-                  </Label>
-                  
+                  <Label>Status</Label>
+                  <Dropdown
+                    items={STATUSES}
+                    valueField="value"
+                    text="text"
+                    onChange={selectedItem =>
+                      this.updateField("status", selectedItem.value)
+                    }
+                    placeholder="Select Status"
+                    value={promotion.status}
+                  ></Dropdown>
                 </FormGroup>
               </Col>
             </Row>

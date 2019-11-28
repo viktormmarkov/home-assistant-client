@@ -15,7 +15,8 @@ export default class SmartDropdown extends Component {
         };
     }
     getSelected = (value) => {
-        const selectedIndex = _.findIndex(this.props.items, i => i._id === value);
+        const {items, valueField} = this.props;
+        const selectedIndex = _.findIndex(items, i => i[valueField] === value);
         if (selectedIndex > -1) {
             return this.props.items[selectedIndex];
         } else {
