@@ -6,7 +6,7 @@ import categoryService from '../../services/categoryService';
 class Categories extends Component {
   render() {
     return (
-      <EntityListBaseComponent service={categoryService} entityName={'categories'}/>
+      <EntityListBaseComponent service={categoryService} entityName={'categories'} {...this.props} />
     )
   }
 }
