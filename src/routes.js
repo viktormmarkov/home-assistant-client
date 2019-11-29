@@ -9,8 +9,8 @@ import Categories from './components/categories/Categories'
 import Category from './components/categories/Category'
 import ShoppingLists from './components/shoppingLists/ShoppingLists'
 import ShoppingList from './components/shoppingLists/ShoppingList'
-import Preferences from "./components/shoppingLists/ShoppingLists";
-import Preference from "./components/shoppingLists/ShoppingList";
+import Preferences from "./components/preferences/Preferences";
+import Preference from "./components/preferences/Preference";
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
