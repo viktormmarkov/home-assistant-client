@@ -1,7 +1,8 @@
 
 import React from "react";
-import {EntityBase} from '../common';
+import {Dropdown, EntityBase} from '../common';
 import preferenceService from '../../services/preferenceService';
+import productService from "../../services/productService";
 
 import {
   Row,
@@ -18,6 +19,18 @@ class Preference extends EntityBase {
   constructor(context) {
     super(context);
     this.entityService = preferenceService;
+  }
+
+  updateStateProducts() {
+    productService.query().then(products => {
+      this.setState({
+        products
+      });
+    });
+  }
+  componentDidMount() {
+    super.componentDidMount();
+    this.updateStateProducts();
   }
   render () {
     const {item: preference} = this.state;
@@ -40,6 +53,19 @@ class Preference extends EntityBase {
                   onChange={(event) => this.updateField("name", event.target.value)}
                 />
               </FormGroup>
+              <FormGroup>
+                  <Label htmlFor="product">Product</Label>
+                  <Dropdown
+                    items={this.state.products}
+                    valueField="_id"
+                    text="name"
+                    onChange={selectedItem =>
+                      this.updateField("product", selectedItem._id)
+                    }
+                    placeholder="Select Product"
+                    value={preference.product}
+                  ></Dropdown>
+                </FormGroup>
             </Col>
           </Row>
         </CardBody>
