@@ -9,6 +9,8 @@ import {
   CardBody,
   Col,
   Input,
+  CardFooter,
+  Button
 } from 'reactstrap';
 
 import EntityMenu from '../common/EntityMenu';
@@ -97,6 +99,18 @@ class ShoppingList extends Component {
       .then(res => console.log(res), err => alert(err))
   }
 
+  updateEmail = (email) => {
+    this.setState({ email });
+  }
+
+  inviteUser = () => {
+    const { shoppingListId, email } = this.state;
+    shoppingListService.inviteUser(shoppingListId, email)
+      .then(res => {
+        console.log(res.data);
+      });
+  }
+
   render() {
     const { shoppingList } = this.state
     /* Add all of the properties, labels and loading state*/
@@ -129,6 +143,30 @@ class ShoppingList extends Component {
               </Col>
             </Row>
           </CardBody>
+        </Card>
+        <Card>
+          <CardBody>
+            <Row>
+              <Col>
+              <FormGroup>
+                  <Label htmlFor="email">Invite a buddy</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={this.state.email}
+                    onChange={event =>
+                      this.updateEmail(event.target.value)
+                    }
+                  />
+                </FormGroup>
+              </Col>
+            </Row>
+          </CardBody>
+          <CardFooter>
+            <div className="fright">
+              <Button onClick={this.inviteUser} color="primary">Invite</Button>
+            </div>
+          </CardFooter>
         </Card>
         <Card>
           <CardBody>

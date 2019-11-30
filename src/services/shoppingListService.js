@@ -6,13 +6,16 @@ class ShoppingListService extends ServiceBase {
         super('shoppingLists');
     }
     addPromotionToList = (id, promotion) => {
-        return this.api.put(`/${this.entity}/${id}/add-promotion`, promotion)
+        return this.api.put(`/${this.entity}/${id}/add-promotion`, promotion);
     }
     addProductToList = (id, product) => {
-        return this.api.put(`/${this.entity}/${id}/add-promotion`, product)
+        return this.api.put(`/${this.entity}/${id}/add-promotion`, product);
     }
     getShoppingItems = (id) => {
         return this.api.get(`${this.entity}/${id}/items`).then(res => res.data);
+    }
+    inviteUser = (id, email) => {
+        return this.api.post(`${this.entity}/${id}/invite-user`, { email });
     }
 }
 
