@@ -2,7 +2,7 @@ import React, { Component, Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import * as router from 'react-router-dom';
 import { Container } from 'reactstrap';
-
+import DefaultHeader from './DefaultHeader';
 import {
   AppAside,
   AppFooter,
@@ -24,12 +24,17 @@ class Application extends Component {
 
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
 
+  signOut(e) {
+    e.preventDefault()
+    this.props.history.push('/login')
+  }
+
   render() {
     return (
       <div className="app">
         <AppHeader fixed>
           <Suspense  fallback={this.loading()}>
-            {/* <DefaultHeader onLogout={e=>this.signOut(e)}/> */}
+            <DefaultHeader onLogout={e=>this.signOut(e)}/>
           </Suspense>
         </AppHeader>
         <div className="app-body">
@@ -59,7 +64,7 @@ class Application extends Component {
                         )} />
                     ) : (null);
                   })}
-                  <Redirect from="/" to="/dashboard" />
+                  <Redirect from="/" to="/promotions" />
                 </Switch>
               </Suspense>
             </Container>
