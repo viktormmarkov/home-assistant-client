@@ -21,7 +21,8 @@ function ShoppingItem(props) {
     <div>
       <span>{item.name}</span>
       <span>{item.price}</span>    
-      <span>{item.quantity}</span>    
+      <span>{item.quantity}</span> 
+      <span onClick={() => props.removeItem(item)}>X</span>   
     </div>
   )
 }
@@ -30,7 +31,7 @@ function ShoppingListItems(props) {
   const items = props.items;
   return (
     <section>
-      {items.map((p, i) => <ShoppingItem item={p} key={p._id} />)}
+      {items.map((p, i) => <ShoppingItem item={p} key={p._id} {...props}/>)}
     </section>
   );
 }
@@ -111,6 +112,17 @@ class ShoppingList extends Component {
       });
   }
 
+  removeItem = (item) => {
+    const { shoppingListId } = this.state;
+    console.log(item);
+    shoppingListService.removeShoppingItem(shoppingListId, item._id)
+      .then(res => {
+        console.log(res);
+      }, err => {
+        console.log(err);
+      });
+  }
+
   render() {
     const { shoppingList } = this.state
     /* Add all of the properties, labels and loading state*/
@@ -173,7 +185,7 @@ class ShoppingList extends Component {
             <Row>
               <Col>
                 <ShoppingListItems
-                  items={this.state.items}
+                  items={this.state.items} removeItem={this.removeItem}
                 ></ShoppingListItems>
               </Col>
             </Row>
