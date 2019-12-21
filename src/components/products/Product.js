@@ -10,6 +10,7 @@ import {
   Input,
   Button
 } from 'reactstrap';
+import Select from 'react-select';
 
 import EntityMenu from '../common/EntityMenu';
 
@@ -113,6 +114,18 @@ class Product extends Component {
                     value={product.name}
                     onChange={(event) => this.updateField("name", event.target.value)}
                   />
+                </FormGroup>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <FormGroup>
+                  <Label htmlFor="category">Categories</Label>
+                  <Select options={[
+                    { value: 'chocolate', label: 'Chocolate' },
+                    { value: 'strawberry', label: 'Strawberry' },
+                    { value: 'vanilla', label: 'Vanilla' }
+                  ]}></Select>
                 </FormGroup>
               </Col>
             </Row>
