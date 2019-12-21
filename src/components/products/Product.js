@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import productService from '../../services/productService';
 
 import {
   Row,
@@ -9,9 +8,13 @@ import {
   CardBody,
   Col,
   Input,
+  Button
 } from 'reactstrap';
 
 import EntityMenu from '../common/EntityMenu';
+
+import productService from '../../services/productService';
+import shoppingListService from "../../services/shoppingListService";
 
 class Product extends Component {
   constructor(context) {
@@ -20,7 +23,8 @@ class Product extends Component {
       productId: this.props.match.params.id,
       product: {},
       isNewEntity: false,
-      loading: false
+      loading: false,
+      shoppingList: {}
     };
   }
   componentDidMount() {
@@ -29,6 +33,7 @@ class Product extends Component {
       this.setState({isNewEntity: true});
     } else {
       this.getProduct();
+      this.getShoppingList();
     }
   }
   getProduct() {
@@ -68,13 +73,33 @@ class Product extends Component {
       .then(res => console.log(res), err => alert(err));
   }
 
+  getShoppingList() {
+    shoppingListService.query().then(list => {
+      this.setState({ shoppingList: list[0] });
+    });
+  }
+
+  addItemToList = () => {
+    const { product, shoppingList } = this.state;
+
+    shoppingListService.addProductToList(shoppingList._id, product);
+  };
+
   render() {
     const { product } = this.state
     return (
       <div className="animated fadeIn">
         <div className="section-header">
           <h3 className="inline">Product {product.name}</h3>
-          <EntityMenu saveItem={this.saveItem} deleteItem={this.deleteItem} entity={product} {...this.props}/>
+          <EntityMenu saveItem={this.saveItem} deleteItem={this.deleteItem} entity={product} {...this.props}>
+            <Button
+                onClick={this.addItemToList}
+                className="btn-sm entity-menu-button"
+                color="primary"
+              >
+              Add Item To List
+            </Button>  
+          </EntityMenu>
         </div>
         <Card>
           <CardBody>
