@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 
 import {
@@ -10,12 +11,12 @@ import {
   Input,
   Button
 } from 'reactstrap';
-import Select from 'react-select';
 
 import EntityMenu from '../common/EntityMenu';
-
+import Multiselect from "../common/Multiselect";
 import productService from '../../services/productService';
 import shoppingListService from "../../services/shoppingListService";
+import categoryService from '../../services/categoryService';
 
 class Product extends Component {
   constructor(context) {
@@ -25,7 +26,8 @@ class Product extends Component {
       product: {},
       isNewEntity: false,
       loading: false,
-      shoppingList: {}
+      shoppingList: {},
+      categories: []
     };
   }
   componentDidMount() {
@@ -35,6 +37,7 @@ class Product extends Component {
     } else {
       this.getProduct();
       this.getShoppingList();
+      this.getCategories();
     }
   }
   getProduct() {
@@ -47,6 +50,18 @@ class Product extends Component {
       .catch(err => {
         this.setState({loading: false});
       })
+  }
+
+  getShoppingList = () => {
+    shoppingListService.query().then(list => {
+      this.setState({ shoppingList: list[0] });
+    });
+  }
+
+  getCategories = () => {
+    categoryService.query().then(list => {
+      this.setState({ categories: list})
+    })
   }
 
   updateField = (name, value) => {
@@ -74,12 +89,6 @@ class Product extends Component {
       .then(res => console.log(res), err => alert(err));
   }
 
-  getShoppingList() {
-    shoppingListService.query().then(list => {
-      this.setState({ shoppingList: list[0] });
-    });
-  }
-
   addItemToList = () => {
     const { product, shoppingList } = this.state;
 
@@ -87,7 +96,8 @@ class Product extends Component {
   };
 
   render() {
-    const { product } = this.state
+    const { product, categories } = this.state
+    console.log(product.categories);
     return (
       <div className="animated fadeIn">
         <div className="section-header">
@@ -121,11 +131,14 @@ class Product extends Component {
               <Col>
                 <FormGroup>
                   <Label htmlFor="category">Categories</Label>
-                  <Select options={[
-                    { value: 'chocolate', label: 'Chocolate' },
-                    { value: 'strawberry', label: 'Strawberry' },
-                    { value: 'vanilla', label: 'Vanilla' }
-                  ]}></Select>
+                  <Multiselect
+                    options={categories}
+                    value={product.categories}
+                    onChange={(selected) => {
+                      this.updateField('categories', _.map(selected, s => s.value))
+                    }}
+                  >
+                  </Multiselect>
                 </FormGroup>
               </Col>
             </Row>
