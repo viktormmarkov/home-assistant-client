@@ -37,8 +37,8 @@ class Product extends Component {
     } else {
       this.getProduct();
       this.getShoppingList();
-      this.getCategories();
     }
+    this.getCategories();
   }
   getProduct() {
     const { productId } = this.state;
