@@ -120,6 +120,9 @@ class ShoppingList extends Component {
         console.log(res);
       }, err => {
         console.log(err);
+      })
+      .then(() => {
+        this.getShoppingItems();
       });
   }
 
