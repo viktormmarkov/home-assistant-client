@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import shoppingListService from '../../services/shoppingListService';
 
 import {
+  FormGroup,
+  Label,
+  Input,
   Row,
   CardBody,
   Col,
@@ -26,7 +29,7 @@ function ShoppingListItems(props) {
   const items = props.items;
   return (
     <section>
-      {items.map((p, i) => <ShoppingItem item={p} key={p._id} {...props}/>)}
+      {items.length ? items.map((p, i) => <ShoppingItem item={p} key={p._id} {...props}/>) : 'No added items'}
     </section>
   );
 }
@@ -123,6 +126,25 @@ class ShoppingList extends Component {
             {...this.props}
           />
         </div>
+        <Card>	
+          <CardBody>	
+            <Row>	
+              <Col>	
+                <FormGroup>	
+                  <Label htmlFor="name">Name</Label>	
+                  <Input	
+                    id="name"	
+                    type="Text"	
+                    value={this.state.shoppingList.name}	
+                    onChange={event =>	
+                      this.updateField("name", event.target.value)	
+                    }	
+                  />	
+                </FormGroup>	
+              </Col>	
+            </Row>	
+          </CardBody>	
+        </Card>
         <Card>
           <CardBody>
             <Row>
