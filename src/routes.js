@@ -11,6 +11,7 @@ import ShoppingLists from './components/shoppingLists/ShoppingLists'
 import ShoppingList from './components/shoppingLists/ShoppingList'
 import Preferences from "./components/preferences/Preferences";
 import Preference from "./components/preferences/Preference";
+import Permissions from "./components/permissions/Permissions";
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -28,7 +29,7 @@ const routes = [
   { path: '/shoppingLists/:id', exact: true, name: 'Shopping List', component: ShoppingList },
   { path: '/preferences', exact: true, name: 'Preferences List', component: Preferences },
   { path: '/preferences/:id', exact: true, name: 'Preference', component: Preference },
-
+  { path: '/permissions', exact: true, name: 'Permissions', component: Permissions },
 ];
 
 export default routes;

@@ -24,6 +24,11 @@ export default {
       name: "User Preferences",
       url: "/preferences",
       icon: "icon-settings"
+    },
+    {
+      name: "Permissions",
+      url: "/permissions",
+      icon: "icon-settings"
     }
   ]
 };

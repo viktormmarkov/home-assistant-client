@@ -100,18 +100,6 @@ class ShoppingList extends Component {
       .then(res => console.log(res), err => alert(err))
   }
 
-  updateEmail = (email) => {
-    this.setState({ email });
-  }
-
-  inviteUser = () => {
-    const { shoppingListId, email } = this.state;
-    shoppingListService.inviteUser(shoppingListId, email)
-      .then(res => {
-        console.log(res.data);
-      });
-  }
-
   removeItem = (item) => {
     const { shoppingListId } = this.state;
     console.log(item);
@@ -140,49 +128,6 @@ class ShoppingList extends Component {
             {...this.props}
           />
         </div>
-        <Card>
-          <CardBody>
-            <Row>
-              <Col>
-                <FormGroup>
-                  <Label htmlFor="name">Name</Label>
-                  <Input
-                    id="name"
-                    type="Text"
-                    value={this.state.shoppingList.name}
-                    onChange={event =>
-                      this.updateField("name", event.target.value)
-                    }
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-          </CardBody>
-        </Card>
-        <Card>
-          <CardBody>
-            <Row>
-              <Col>
-              <FormGroup>
-                  <Label htmlFor="email">Invite a buddy</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={this.state.email}
-                    onChange={event =>
-                      this.updateEmail(event.target.value)
-                    }
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-          </CardBody>
-          <CardFooter>
-            <div className="fright">
-              <Button onClick={this.inviteUser} color="primary">Invite</Button>
-            </div>
-          </CardFooter>
-        </Card>
         <Card>
           <CardBody>
             <Row>
