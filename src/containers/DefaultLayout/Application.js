@@ -19,13 +19,15 @@ import {
 import navigation from '../../_nav';
 // routes config
 import routes from '../../routes';
+import authenticationService from '../../services/authenticationService';
 
 class Application extends Component {
 
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
 
   signOut(e) {
-    e.preventDefault()
+    e.preventDefault();
+    authenticationService.logout();
     this.props.history.push('/login')
   }
 
