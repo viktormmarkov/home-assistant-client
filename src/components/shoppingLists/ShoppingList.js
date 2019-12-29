@@ -3,14 +3,8 @@ import shoppingListService from '../../services/shoppingListService';
 
 import {
   Row,
-  FormGroup,
-  Label,
-  Card,
   CardBody,
   Col,
-  Input,
-  CardFooter,
-  Button
 } from 'reactstrap';
 
 import EntityMenu from '../common/EntityMenu';

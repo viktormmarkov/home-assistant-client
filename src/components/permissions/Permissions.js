@@ -34,7 +34,6 @@ class Permissions extends Component {
   render() {
     return (
       <div>
-        <h1>Permissions</h1>
         <Card>
           <CardBody>
             <Row>
