@@ -5,6 +5,7 @@ import {
   Row,
   CardBody,
   Col,
+  Card
 } from 'reactstrap';
 
 import EntityMenu from '../common/EntityMenu';
