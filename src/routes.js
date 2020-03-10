@@ -4,6 +4,7 @@ import User from './components/users/User'
 import Promotions from './components/promotions/Promotions'
 import Promotion from './components/promotions/Promotion'
 import Products from './components/products/Products'
+import ProductsAdd from './components/products/ProductsAdd'
 import Product from "./components/products/Product";
 import Categories from './components/categories/Categories'
 import Category from './components/categories/Category'
@@ -21,6 +22,7 @@ const routes = [
   { path: '/promotions', exact: true, name: 'Promotion', component: Promotions },
   { path: '/promotions/:id', exact: true, name: 'Promotion Details', component: Promotion },
   { path: '/products', exact: true, name: 'Products', component: Products },
+  { path: '/products/add', exact: true, name: 'Add Products', component: ProductsAdd },
   { path: '/products/:id', exact: true, name: 'Products', component: Product },
   { path: '/categories', exact: true, name: 'Categories', component: Categories },
   { path: '/categories/:id', exact: true, name: 'Category', component: Category },

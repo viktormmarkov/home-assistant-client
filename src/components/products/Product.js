@@ -40,6 +40,7 @@ class Product extends Component {
     }
     this.getCategories();
   }
+
   getProduct() {
     const { productId } = this.state;
     this.setState({loading: true});
@@ -97,7 +98,6 @@ class Product extends Component {
 
   render() {
     const { product, categories } = this.state
-    console.log(product.categories);
     return (
       <div className="animated fadeIn">
         <div className="section-header">
