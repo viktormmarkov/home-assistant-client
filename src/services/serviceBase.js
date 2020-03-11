@@ -15,8 +15,8 @@ class ServiceBase {
     getItem(id) {
         return this.api.get(`/${this.entity}/${id}`);
     }
-    addItem(item) {
-        return this.api.post(`/${this.entity}`, item);
+    addItem(items) {
+        return this.api.post(`/${this.entity}`, items);
     }
     updateItem(id, item) {
         return this.api.put(`/${this.entity}/${id}`, item);

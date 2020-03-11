@@ -8,6 +8,7 @@ import {
 } from 'reactstrap';
 import Multiselect from "../common/Multiselect";
 import categoryService from '../../services/categoryService';
+import productService from '../../services/productService';
 
 class ProductRow extends React.Component {
   constructor(props) {
@@ -62,7 +63,8 @@ class ProductsAdd extends Component {
   }
 
   addItems = () => {
-    console.log(this.state.products);
+    const {products} = this.state;
+    return productService.addItem(products);
   }
 
 
