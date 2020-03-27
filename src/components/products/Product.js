@@ -97,19 +97,21 @@ class Product extends Component {
   };
 
   render() {
-    const { product, categories } = this.state
+    const { product, categories, productId } = this.state
     return (
       <div className="animated fadeIn">
         <div className="section-header">
           <h3 className="inline">Product {product.name}</h3>
           <EntityMenu saveItem={this.saveItem} deleteItem={this.deleteItem} entity={product} {...this.props}>
-            <Button
+            {
+              productId !== 'new' ?
+              (<Button
                 onClick={this.addItemToList}
                 className="btn-sm entity-menu-button"
                 color="primary"
-              >
-              Add Item To List
-            </Button>  
+              >Add Item To List</Button>) :
+              null
+            }
           </EntityMenu>
         </div>
         <Card>
