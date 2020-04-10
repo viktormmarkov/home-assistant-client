@@ -166,6 +166,7 @@ class Promotion extends Component {
                     items={this.state.products}
                     valueField="_id"
                     text="name"
+                    valueKey="_id"
                     onChange={selectedItem =>
                       this.updateField("product", selectedItem._id)
                     }

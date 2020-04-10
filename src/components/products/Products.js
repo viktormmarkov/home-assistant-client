@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react';
+import React from 'react';
 import EntityListBaseComponent from '../common/EntityListBaseComponent';
 import { Table, Button } from 'reactstrap';
 import ItemRow from '../common/ItemRow';

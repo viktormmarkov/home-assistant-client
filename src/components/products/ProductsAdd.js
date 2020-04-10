@@ -1,4 +1,5 @@
 
+import * as _ from 'lodash';
 import React, { Component } from 'react';
 import {
   FormGroup,
@@ -11,10 +12,6 @@ import categoryService from '../../services/categoryService';
 import productService from '../../services/productService';
 
 class ProductRow extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   updateField = (name, value) => {
     const { product } = this.props;
     product[name] = value;
@@ -31,6 +28,7 @@ class ProductRow extends React.Component {
           id="name"
           type="Text"
           value={product.name}
+          placeholder={'Product name'}
           onChange={(event) => this.updateField('name', event.target.value)}
         />
         <Label htmlFor="category">Categories</Label>
@@ -52,7 +50,7 @@ class ProductsAdd extends Component {
     super(props);
     this.state = {
       products: [{
-        name: 'Product Name',
+        name: '',
         categories: []
       }]
     }
@@ -69,8 +67,8 @@ class ProductsAdd extends Component {
 
 
   addItem = () => {
-    const products = [...this.state.products, {name: 'Product Name', categories: []}];
-    console.log(products);
+    const lastProduct = _.last(this.state.products);
+    const products = [...this.state.products, {name: '', categories: [...lastProduct.categories]}];
     this.setState({
       products
     })

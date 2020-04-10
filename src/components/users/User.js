@@ -26,7 +26,7 @@ class User extends Component {
       })
   }
   render() {
-    const {user, loading} = this.state
+    const {user} = this.state
     return (
       <div className="animated fadeIn">
           <h1>User {user.name}</h1>

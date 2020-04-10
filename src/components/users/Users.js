@@ -38,7 +38,7 @@ class Users extends Component {
       })
   }
   render() {
-    const {users, loading} = this.state
+    const {users} = this.state
     return (
       <div className="animated fadeIn">
           <h1>Users</h1>

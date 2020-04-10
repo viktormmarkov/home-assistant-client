@@ -60,6 +60,7 @@ class ShoppingList extends Component {
       .then(res => {
         this.setState({shoppingList: res.data, loading: false});
         this.getShoppingItems();
+        this.getRelatedPromotions();
       })
       .catch(err => {
         this.setState({loading: false});
@@ -70,6 +71,13 @@ class ShoppingList extends Component {
     const { shoppingListId } = this.state;
     shoppingListService.getShoppingItems(shoppingListId).then(items => { 
       this.setState({items})
+    });
+  }
+
+  getRelatedPromotions() {
+    const { shoppingListId } = this.state;
+    shoppingListService.getRelatedPromotions(shoppingListId).then(promotions => { 
+      this.setState({promotions})
     });
   }
 
