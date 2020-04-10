@@ -49,7 +49,6 @@ export default class SmartDropdown extends Component {
         const items = (this.props.items || []).filter(i => {
             return !i.name || !search || i.name.toLowerCase().indexOf(search.toLowerCase()) > -1;
         });
-        console.log(items,valueKey);
         return (
             <Dropdown isOpen={this.state.isOpen} toggle={() => {this.toggle();}}>
                 <DropdownToggle caret>
