@@ -23,6 +23,9 @@ class ShoppingListService extends ServiceBase {
     inviteUser = (id, email) => {
         return this.api.post(`${this.entity}/${id}/invite-user`, { email });
     }
+    getUsers = (id) => {
+        return this.api.get(`${this.entity}/${id}/users`);
+    }
 }
 
 export default new ShoppingListService();
