@@ -167,8 +167,9 @@ class Promotion extends Component {
                     valueField="_id"
                     text="name"
                     valueKey="_id"
-                    onChange={selectedItem =>
-                      this.updateField("product", selectedItem._id)
+                    onChange={selectedItem => {
+                        this.updateField("product", selectedItem._id)
+                      }
                     }
                     placeholder="Select Main Product"
                     value={promotion.product}
@@ -194,6 +195,7 @@ class Promotion extends Component {
                   <Dropdown
                     items={STATUSES}
                     valueField="value"
+                    valueKey="value"
                     text="text"
                     onChange={selectedItem =>
                       this.updateField("status", selectedItem.value)

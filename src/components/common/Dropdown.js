@@ -15,9 +15,12 @@ export default class SmartDropdown extends Component {
             selectedIndex: null,
         };
     }
-    getSelected = (value) => {
+    getSelectedIndex = (value) => {
         const {items, valueField} = this.props;
-        const selectedIndex = _.findIndex(items, i => i[valueField] === value);
+        return _.findIndex(items, i => i[valueField] === value);
+    }
+    getSelected = (value) => {
+        const selectedIndex = this.getSelectedIndex(value);
         if (selectedIndex > -1) {
             return this.props.items[selectedIndex];
         } else {
@@ -31,10 +34,12 @@ export default class SmartDropdown extends Component {
     }
     updateValue = (e) => {
         if (this.props.onChange) {
-            this.props.onChange(this.props.items[e.target.value]);            
+            const selected = this.getSelected(e.target.value);
+            this.props.onChange(selected);            
         }
+        const selectedIndex = this.getSelectedIndex(e.target.value);
         this.setState({
-            selectedIndex: e.target.value
+            selectedIndex
         });
     }
     updateSearch = (e) => {
@@ -60,7 +65,7 @@ export default class SmartDropdown extends Component {
                         {items.map((i, index) => (<DropdownItem 
                         key={valueKey && i[valueKey] || index} 
                         onClick={this.updateValue} 
-                        value={index} 
+                        value={i[valueKey]} 
                         active={index === this.state.selectedIndex}>
                             {i[text]}
                         </DropdownItem>))}
