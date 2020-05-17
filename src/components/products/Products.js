@@ -1,8 +1,8 @@
 
 import React from 'react';
+import * as _ from 'lodash';
 import EntityListBaseComponent from '../common/EntityListBaseComponent';
 import { Table, Button, Input, Row, Col } from 'reactstrap';
-// import ItemRow from '../common/ItemRow';Add
 import productService from '../../services/productService';
 import categoryService from "../../services/categoryService";
 import { Dropdown } from "../common";
@@ -58,7 +58,7 @@ class Products extends EntityListBaseComponent {
     return (
       <div className="animated fadeIn">
           <div className="section-header">
-            <h3 className="inline">{this.entityName}</h3>
+            <h3 className="inline">{_.capitalize(this.entityName)}</h3>
             <Button onClick={this.addItem} className="fright btn-sm entity-menu-button" color="primary">Add</Button>
             <Button onClick={this.addItems} className="fright btn-sm entity-menu-button" color="primary">Add Items</Button>
           </div>
@@ -95,7 +95,7 @@ class Products extends EntityListBaseComponent {
             </thead>
             <tbody>
                 { filtered.map((item, index) => {
-                     const {entityName} = this.props;
+                     const entityName = this.entityName;
                      return (
                        <tr key={item._id}>
                          <td><Link to={`/${entityName}/${item._id}`}>{item.name}</Link></td>

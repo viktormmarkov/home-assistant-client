@@ -30,7 +30,7 @@ export default class CustomDatepicker extends React.Component {
         const selectedEnd = validEnd ? new Date(this.props.endDate) : this.state.endDate;
         return (
             <Fragment>
-                <Label className="pr-2">From</Label>
+                <Label className="pr-2">{this.props.fromLabel || 'From'}</Label>
                 <DatePicker
                     className="form-control"
                     dateFormat={DATE_FORMAT}
@@ -39,7 +39,7 @@ export default class CustomDatepicker extends React.Component {
                     startDate={selectedStart}
                     selectsStart
                 />
-                <Label className="px-2">To</Label>
+                <Label className="px-2">{this.props.toLabel || 'To'}</Label>
                <DatePicker
                     className="form-control"
                     dateFormat={DATE_FORMAT}

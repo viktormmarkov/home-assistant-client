@@ -13,6 +13,7 @@ import ShoppingList from './components/shoppingLists/ShoppingList'
 import Preferences from "./components/preferences/Preferences";
 import Preference from "./components/preferences/Preference";
 import Permissions from "./components/permissions/Permissions";
+import PromotionsAdd from './components/promotions/PromotionsAdd'
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -20,6 +21,7 @@ const routes = [
   { path: '/users', exact: true, name: 'Users', component: Users },
   { path: '/users/:id', exact: true, name: 'User Details', component: User },
   { path: '/promotions', exact: true, name: 'Promotion', component: Promotions },
+  { path: '/promotions/add', exact: true, name: 'Add Promotions', component: PromotionsAdd },
   { path: '/promotions/:id', exact: true, name: 'Promotion Details', component: Promotion },
   { path: '/products', exact: true, name: 'Products', component: Products },
   { path: '/products/add', exact: true, name: 'Add Products', component: ProductsAdd },

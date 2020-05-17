@@ -49,7 +49,7 @@ export default class SmartDropdown extends Component {
     }
     render() {
         const {placeholder, search} = this.state;
-        const {valueKey, text, value} = this.props;
+        const {valueKey, text, value, searchDisabled} = this.props;
         const selected = this.getSelected(value);
         const items = (this.props.items || []).filter(i => {
             return !i.name || !search || i.name.toLowerCase().indexOf(search.toLowerCase()) > -1;
@@ -60,7 +60,9 @@ export default class SmartDropdown extends Component {
                     {selected[text] || this.props.placeholder || placeholder}
                 </DropdownToggle>
                 <DropdownMenu >
-                    <Input placeholder="Search products" value={search} onChange={this.updateSearch}/>
+                    {
+                        !searchDisabled ? (<Input placeholder={this.props.searchPlaceholder || 'Type to filter' } value={search} onChange={this.updateSearch}/>) : null
+                    }
                     <div className={'dropdownMenu'}>
                         {items.map((i, index) => (<DropdownItem 
                         key={valueKey && i[valueKey] || index} 

@@ -111,8 +111,5 @@ export default ${entityCapitalized};
 fs.appendFileSync(`${entityComponentFolder}/${componentGridView}.js`, gridTemplate);
 fs.appendFileSync(`${entityComponentFolder}/${componentSingleView}.js`, entityTemplate);
 
-// create grid
 // create view
 // add the view in nav
-
-
