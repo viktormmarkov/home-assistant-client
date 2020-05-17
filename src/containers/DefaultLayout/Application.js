@@ -20,9 +20,19 @@ import navigation from '../../_nav';
 // routes config
 import routes from '../../routes';
 import authenticationService from '../../services/authenticationService';
-
+import {ModalExtended as Modal} from '../../components/modal/Modal';
+import {Button} from 'reactstrap';
 class Application extends Component {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      ...super.state,
+      modal: false
+    }
+  }
+  toggle = () => {
+    this.setState({modal: !this.state.modal});
+  }
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
 
   signOut(e) {
@@ -82,6 +92,8 @@ class Application extends Component {
             {/* <DefaultFooter /> */}
           </Suspense>
         </AppFooter>
+        {/* <Button onClick={this.toggle}>Click me</Button>
+        <Modal modal={this.state.modal}></Modal> */}
       </div>
     );
   }
