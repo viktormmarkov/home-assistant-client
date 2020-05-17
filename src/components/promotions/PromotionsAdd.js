@@ -23,11 +23,11 @@ import { Dropdown, DatePeriodPicker} from "../common";
 // shop
 const calculateStatus = (period) => {
   if (moment().isBetween(period.startDate, period.endDate)) {
-    return 'ACTIVE';
+    return 'active';
   } else if (moment().isBefore(period.startDate)) {
-    return 'PENDING';
+    return 'pending';
   } else {
-    return 'EXPIRED';
+    return 'expired';
   }
 }
 class PromotionRow extends React.Component {
@@ -49,7 +49,9 @@ class PromotionRow extends React.Component {
     const {product} = this.state;
     return (
       <Form className={this.props.className}>
-        <FormGroup row>
+        <Card>
+          <CardBody>
+          <FormGroup row>
           <Label sm={3} htmlFor="product">Product</Label>
           <Col sm={9}>
             <Dropdown
@@ -80,6 +82,20 @@ class PromotionRow extends React.Component {
               />
             </Col>
           </FormGroup>
+          <FormGroup row>
+            <Label sm={3} htmlFor="oldPrice">Old Price</Label>
+            <Col sm={9}>
+              <Input
+                id="oldPrice"
+                type="number"
+                value={promotion.oldPrice}
+                placeholder={'0.00$'}
+                onChange={(event) => this.updateField('oldPrice', event.target.value)}
+              />
+            </Col>
+          </FormGroup>
+          </CardBody>
+        </Card>
       </Form>
     );
   }
