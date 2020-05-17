@@ -114,9 +114,8 @@ class PromotionsAdd extends Component {
   addItems = () => {
     const {promotions, promotion} = this.state;
     const status = calculateStatus(promotion);
-    console.log(status);
-    // const promotionsExtended = promotions.map(p => ({...p, ...promotion, status}));
-    // return promotionService.addItem(promotionsExtended);
+    const promotionsExtended = promotions.map(p => ({...p, ...promotion, status}));
+    return promotionService.addItem(promotionsExtended);
   }
 
   updateStateProducts() {
