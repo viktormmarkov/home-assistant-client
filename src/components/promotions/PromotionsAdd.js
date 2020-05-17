@@ -1,5 +1,6 @@
 
 import * as _ from 'lodash';
+import moment from 'moment';
 import React, { Component } from 'react';
 import {
   FormGroup,
@@ -16,12 +17,19 @@ import categoryService from '../../services/categoryService';
 import promotionService from '../../services/promotionService';
 import productService from "../../services/productService";
 import { Dropdown, DatePeriodPicker} from "../common";
-import Multiselect from "../common/Multiselect";
 
 // brand 
 // old price 
 // shop
-
+const calculateStatus = (period) => {
+  if (moment().isBetween(period.startDate, period.endDate)) {
+    return 'ACTIVE';
+  } else if (moment().isBefore(period.startDate)) {
+    return 'PENDING';
+  } else {
+    return 'EXPIRED';
+  }
+}
 class PromotionRow extends React.Component {
   constructor(props) {
     super(props);
@@ -85,7 +93,10 @@ class PromotionsAdd extends Component {
         name: '',
       }],
       products: [],
-      promotion: {}
+      promotion: {
+        startDate: moment().startOf('week').toDate(),
+        endDate: moment().endOf('week').toDate()
+      }
     }
   }
   
@@ -102,8 +113,10 @@ class PromotionsAdd extends Component {
 
   addItems = () => {
     const {promotions, promotion} = this.state;
-    const promotionsExtended = promotions.map(p => ({...p, ...promotion}));
-    return promotionService.addItem(promotionsExtended);
+    const status = calculateStatus(promotion);
+    console.log(status);
+    // const promotionsExtended = promotions.map(p => ({...p, ...promotion, status}));
+    // return promotionService.addItem(promotionsExtended);
   }
 
   updateStateProducts() {
@@ -162,7 +175,7 @@ class PromotionsAdd extends Component {
           {promotions.map((p, i) => 
             <PromotionRow className="col-sm-4" key={i} promotion={p} products={products} removeItem={this.removeItem.bind(this, i)}></PromotionRow>
           )}
-          <FormGroup className="col-sm-4">
+          <FormGroup className="col-sm-12">
             <Button onClick={this.addItem} size="lg" outline color="primary">Add Item</Button>
           </FormGroup>
           </Row>
