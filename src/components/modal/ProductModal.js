@@ -15,7 +15,6 @@ import Multiselect from "../common/Multiselect";
 import productService from '../../services/productService';
 import categoryService from '../../services/categoryService';
 
-
 class ProductModal extends React.Component {
   constructor(props) {
     super(props);

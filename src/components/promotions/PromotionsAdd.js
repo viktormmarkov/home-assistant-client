@@ -17,6 +17,7 @@ import categoryService from '../../services/categoryService';
 import promotionService from '../../services/promotionService';
 import productService from "../../services/productService";
 import { Dropdown, DatePeriodPicker} from "../common";
+import { connect } from 'react-redux';
 
 const calculateStatus = (period) => {
   if (moment().isBetween(period.startDate, period.endDate)) {
@@ -163,6 +164,7 @@ class PromotionsAdd extends Component {
           <div className="section-header">
             <h3 className="inline">Add Promotions</h3>
             <Button onClick={this.addItems} className="fright btn-sm" color="primary">Add All</Button>
+            <Button onClick={this.props.openDialog} className="fright btn-sm" color="primary">Add Product</Button>
           </div>
           <hr></hr>
           <FormGroup>
@@ -194,4 +196,9 @@ class PromotionsAdd extends Component {
   }
 }
 
-export default PromotionsAdd;
+const mapDispatchToProps = dispatch => ({
+  openDialog: () => {dispatch({type: 'DIALOG_OPEN', payload: {type: 'ProductModal'}})}
+})
+
+
+export default connect(null, mapDispatchToProps)(PromotionsAdd);
