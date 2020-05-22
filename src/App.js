@@ -3,17 +3,21 @@ import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import LoginScreen from "./components/login/LoginScreen";
 import RegisterScreen from "./components/register/RegisterScreen";
 import DefaultLayout from "./containers/DefaultLayout";
+import { Provider } from 'react-redux';
+import { NotificationStore } from './stores/NotificationStore';
 
 class App extends Component {
   render() {
     return (
-      <Router>
-        <Switch>
-          <Route exact path="/login" render={props => <LoginScreen {...props} />} />
-          <Route exact path="/register" render={props => <RegisterScreen {...props} />} />
-          <Route path="/" name="Home" render={props => <DefaultLayout {...props}/>} />
-        </Switch>
-      </Router>
+      <Provider store={NotificationStore}>
+        <Router>
+          <Switch>
+            <Route exact path="/login" render={props => <LoginScreen {...props} />} />
+            <Route exact path="/register" render={props => <RegisterScreen {...props} />} />
+            <Route path="/" name="Home" render={props => <DefaultLayout {...props}/>} />
+          </Switch>
+        </Router>
+      </Provider>
     );
   }
 }

@@ -1,6 +1,6 @@
 import axios from 'axios';
-console.log(process.env.REACT_APP_API_URL);
+console.log('http://localhost:3031');
 export default axios.create({
-    baseURL: process.env.REACT_APP_API_URL,
+    baseURL: 'http://localhost:3031',
     withCredentials: true
 })

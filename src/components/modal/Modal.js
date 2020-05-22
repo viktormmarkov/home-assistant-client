@@ -1,24 +1,18 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal} from 'reactstrap';
+import { useSelector } from 'react-redux'
+import { ModalConfig } from './ModalConfig';
 
-export class ModalExtended extends React.Component {
-    toggle = () => {
-        this.setState({modal: this.state.modal});
-    }
+const ModalExtended = () => {
+  const dialogShown = useSelector(state => state.open); 
+  const dialog = useSelector(state => state.type); 
+  const Component = ModalConfig[dialog];
 
-    render() {
-        const {modal} = this.props;
-        return (
-            <Modal isOpen={modal}>
-            <ModalHeader>Modal title</ModalHeader>
-            <ModalBody>
-              dynamic import goes here.
-            </ModalBody>
-            <ModalFooter>
-              <Button color="primary">Do Something</Button>{' '}
-              <Button color="secondary">Cancel</Button>
-            </ModalFooter>
-          </Modal>
-        );
-    }
+  return (
+    <Modal isOpen={dialogShown}>
+      {dialog && <Component/>}
+    </Modal>
+  );
 }
+
+export default ModalExtended;

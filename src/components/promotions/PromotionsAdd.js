@@ -18,9 +18,6 @@ import promotionService from '../../services/promotionService';
 import productService from "../../services/productService";
 import { Dropdown, DatePeriodPicker} from "../common";
 
-// brand 
-// old price 
-// shop
 const calculateStatus = (period) => {
   if (moment().isBetween(period.startDate, period.endDate)) {
     return 'active';
@@ -34,7 +31,6 @@ class PromotionRow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product: {},
       addProduct: false
     }
   }
@@ -45,8 +41,7 @@ class PromotionRow extends React.Component {
   }
  
   render () {
-    const {promotion, products, categories} = this.props;
-    const {product} = this.state;
+    const {promotion, products} = this.props;
     return (
       <Form className={this.props.className}>
         <Card>

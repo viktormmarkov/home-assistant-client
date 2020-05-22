@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import EntityListBaseComponent from '../common/EntityListBaseComponent';
 import promotionService from '../../services/promotionService';
-import { Table, Button, Input, Row, Col } from 'reactstrap';
+import { Table, Button} from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 class Promotions extends EntityListBaseComponent {

@@ -20,8 +20,10 @@ import navigation from '../../_nav';
 // routes config
 import routes from '../../routes';
 import authenticationService from '../../services/authenticationService';
-import {ModalExtended as Modal} from '../../components/modal/Modal';
-import {Button} from 'reactstrap';
+import ModalExtended from '../../components/modal/Modal';
+import { Button } from 'reactstrap';
+import { connect } from 'react-redux';
+
 class Application extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +33,11 @@ class Application extends Component {
     }
   }
   toggle = () => {
-    this.setState({modal: !this.state.modal});
+    if (this.props.dialogShown) {
+      this.props.dialogClose();
+    } else {
+      this.props.dialogOpen();
+    }
   }
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
 
@@ -92,11 +98,22 @@ class Application extends Component {
             {/* <DefaultFooter /> */}
           </Suspense>
         </AppFooter>
-        {/* <Button onClick={this.toggle}>Click me</Button>
-        <Modal modal={this.state.modal}></Modal> */}
+        <Button onClick={this.toggle}>Click me</Button>
+        <ModalExtended dialog="ProductModal"></ModalExtended>
       </div>
     );
   }
 }
+const mapDispatchToProps = dispatch => {
+  return {
+    dialogOpen: () => dispatch({ type: 'DIALOG_OPEN', payload: {
+      type: 'ProductModal',
+      params: {
+        name: 'GOSHO'
+      }
+    } }),
+    dialogClose: () => dispatch({ type: 'DIALOG_CLOSE', payload: {}})
+  }
+};
 
-export default Application;
+export default connect(null, mapDispatchToProps)(Application);
