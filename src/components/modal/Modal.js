@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux'
 import { ModalConfig } from './ModalConfig';
 
 const ModalExtended = () => {
-  const dialogShown = useSelector(state => state.open); 
-  const dialog = useSelector(state => state.type); 
+  const dialogShown = useSelector(state => state.dialog.open); 
+  const dialog = useSelector(state => state.dialog.type); 
   const Component = ModalConfig[dialog];
 
   return (

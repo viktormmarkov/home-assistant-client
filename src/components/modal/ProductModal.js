@@ -80,7 +80,7 @@ class ProductModal extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  params: state.params,
+  params: state.dialog.params,
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -1,14 +1,13 @@
-import { createStore } from 'redux';
-
 const initialState = {
   open: false,
   type: '',
   params: {}
 }
-const notificationReducer = function (state = false, action) {
+const dialogReducer = function (state = initialState, action) {
     switch (action.type) {
       case "DIALOG_OPEN":
         return {
+          ...state,
           open: true,
           ...action.payload
         };
@@ -23,4 +22,4 @@ const notificationReducer = function (state = false, action) {
     }
   };
 
-export const NotificationStore = createStore(notificationReducer);
+export default dialogReducer;

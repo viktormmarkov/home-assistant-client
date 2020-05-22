@@ -4,12 +4,12 @@ import LoginScreen from "./components/login/LoginScreen";
 import RegisterScreen from "./components/register/RegisterScreen";
 import DefaultLayout from "./containers/DefaultLayout";
 import { Provider } from 'react-redux';
-import { NotificationStore } from './stores/NotificationStore';
+import { rootStore as store } from './stores/configureStores';
 
 class App extends Component {
   render() {
     return (
-      <Provider store={NotificationStore}>
+      <Provider store={store}>
         <Router>
           <Switch>
             <Route exact path="/login" render={props => <LoginScreen {...props} />} />
