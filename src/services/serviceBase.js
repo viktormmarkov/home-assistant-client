@@ -1,16 +1,22 @@
 import apiBase from './apiBase';
 
+const encodeParams = (filter) => {
+    let params = [];
+    for (let key in filter) {
+        params.push(`${key}=${filter[key]}`);
+    }
+    return params.join('&');
+}
 class ServiceBase {
     constructor(entity) {
         this.entity = entity;
         this.api = apiBase
     }
 
-    query() {
-        return this.api.get(`/${this.entity}`)
-            .then(res => {
-                return res.data;
-            });
+    query(filter) {
+        const params = encodeParams(filter);
+        return this.api.get(`/${this.entity}${params ? '?'+params : ''}`)
+            .then(res => res.data);
     }
     getItem(id) {
         return this.api.get(`/${this.entity}/${id}`);

@@ -2,17 +2,7 @@
 import * as _ from 'lodash';
 import moment from 'moment';
 import React, { Component } from 'react';
-import {
-  FormGroup,
-  Label,
-  Input,
-  Button,
-  Row,
-  Card,
-  CardBody,
-  Form,
-  Col,
-} from 'reactstrap';
+import { FormGroup, Label, Input, Button, Row, Card, CardBody, Form, Col, } from 'reactstrap';
 import categoryService from '../../services/categoryService';
 import promotionService from '../../services/promotionService';
 import productService from "../../services/productService";
@@ -163,8 +153,8 @@ class PromotionsAdd extends Component {
       <div className="animated fadeIn">
           <div className="section-header">
             <h3 className="inline">Add Promotions</h3>
-            <Button onClick={this.addItems} className="fright btn-sm" color="primary">Add All</Button>
-            <Button onClick={this.props.openDialog} className="fright btn-sm" color="primary">Add Product</Button>
+            <Button onClick={this.addItems} className="fright btn-sm entity-menu-button" color="primary">Add All</Button>
+            <Button onClick={this.props.openDialog} className="fright btn-sm entity-menu-button" color="primary">Add Product</Button>
           </div>
           <hr></hr>
           <FormGroup>

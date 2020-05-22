@@ -30,6 +30,17 @@ class Products extends EntityListBaseComponent {
     this.getCategories()
   }
 
+  getItems() {
+    this.setState({loading: true});
+    this.service.query({personal: false})
+      .then(items => {
+        this.setState({items, loading: false});
+      })
+      .catch(err => {
+        this.setState({loading: false});
+      })
+  }
+
   getCategories() {
     categoryService.query().then(categories => {
       this.setState({
@@ -85,6 +96,7 @@ class Products extends EntityListBaseComponent {
               value={this.state.search.category}
             ></Dropdown>
           </Row>
+          <hr></hr>
           <Table responsive hover>
             <thead className="thead-light">
               <tr>
