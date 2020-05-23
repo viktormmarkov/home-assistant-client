@@ -39,15 +39,14 @@ const componentSingleView = `${entityCapitalized}`;
 
 
 const gridTemplate = `
-import React, { Component } from 'react';
 import EntityListBaseComponent from '../common/EntityListBaseComponent';
 import ${serviceFileName} from '../../services/${serviceFileName}';
 
-class ${_.capitalize(entityPlural)} extends Component {
-  render() {
-    return (
-      <EntityListBaseComponent service={${serviceFileName}} entityName={'${entityPlural}'} {...this.props}/>
-    )
+class ${_.capitalize(entityPlural)} extends EntityListBaseComponent {
+  constructor(props){
+    super(props);
+    this.entityName = ${entityPlural};
+    this.service = ${serviceFileName};
   }
 }
 
