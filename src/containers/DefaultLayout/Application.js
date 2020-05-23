@@ -22,6 +22,7 @@ import routes from '../../routes';
 import authenticationService from '../../services/authenticationService';
 import ModalExtended from '../../components/modal/Modal';
 import { connect } from 'react-redux';
+import { NotificationContainer } from 'react-notifications';
 
 class Application extends Component {
   constructor(props) {
@@ -91,6 +92,7 @@ class Application extends Component {
           </Suspense>
         </AppFooter>
         <ModalExtended />
+        <NotificationContainer/>
       </div>
     );
   }
