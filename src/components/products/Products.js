@@ -10,13 +10,9 @@ import { Link } from 'react-router-dom';
 
 class Products extends EntityListBaseComponent {
   constructor(props) {
-    const propsExtended = {
-      service: productService, 
-      entityName: 'products',
-      ...props
-    };
-    super(propsExtended);
-
+    super(props);
+    this.service = productService; 
+    this.entityName = 'products';
     this.state = {
       ...this.state,
       search: {

@@ -6,12 +6,9 @@ import { Link } from 'react-router-dom';
 
 class Promotions extends EntityListBaseComponent {
   constructor(props) {
-    const propsExtended = {
-      service: promotionService, 
-      entityName: 'promotions',
-      ...props
-    };
-    super(propsExtended);
+    super(props);
+    this.service = promotionService;
+    this.entityName = 'promotions';
 
     this.state = {
       ...this.state,

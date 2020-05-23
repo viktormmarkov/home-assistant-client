@@ -5,9 +5,6 @@ import ItemRow from './ItemRow';
 export default class EntityListBaseComponent extends React.Component {
   constructor(props) {
     super(props);
-    const {service, entityName} = props;
-    this.service = service;
-    this.entityName = entityName;
     this.state = {
       items: [],
       loading: false

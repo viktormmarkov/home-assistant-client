@@ -65,7 +65,7 @@ export default class SmartDropdown extends Component {
                     }
                     <div className={'dropdownMenu'}>
                         {items.map((i, index) => (<DropdownItem 
-                        key={valueKey && i[valueKey] || index} 
+                        key={(valueKey && i[valueKey]) || index} 
                         onClick={this.updateValue} 
                         value={i[valueKey]} 
                         active={index === this.state.selectedIndex}>
