@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
 import EntityListBaseComponent from '../common/EntityListBaseComponent';
 import shoppingListService from '../../services/shoppingListService';
 
-class ShoppingLists extends Component {
-  render() {
-    return (
-      <EntityListBaseComponent service={shoppingListService} entityName={'shoppingLists'} {...this.props}/>
-    )
+class ShoppingLists extends EntityListBaseComponent {
+  constructor(props) {
+    super(props);
+    this.entityName = 'shoppingLists';
+    this.service = shoppingListService;
+    this.displayName = 'Shopping Lists'
   }
 }
 

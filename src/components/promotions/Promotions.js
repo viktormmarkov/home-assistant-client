@@ -1,4 +1,5 @@
 import React from 'react';
+import * as _ from 'lodash';
 import EntityListBaseComponent from '../common/EntityListBaseComponent';
 import promotionService from '../../services/promotionService';
 import { Table, Button} from 'reactstrap';
@@ -25,7 +26,7 @@ class Promotions extends EntityListBaseComponent {
     return (
       <div className="animated fadeIn">
           <div className="section-header">
-            <h3 className="inline">{this.entityName}</h3>
+            <h3 className="inline">{_.capitalize(this.entityName)}</h3>
             <Button onClick={this.addItem} className="fright btn-sm entity-menu-button" color="primary">Add</Button>
             <Button onClick={this.addItems} className="fright btn-sm entity-menu-button" color="primary">Add Items</Button>
           </div>

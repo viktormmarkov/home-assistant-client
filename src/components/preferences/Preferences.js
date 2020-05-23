@@ -1,13 +1,11 @@
-
-import React, { Component } from 'react';
 import EntityListBaseComponent from '../common/EntityListBaseComponent';
 import preferenceService from '../../services/preferenceService';
 
-class Preferences extends Component {
-  render() {
-    return (
-      <EntityListBaseComponent service={preferenceService} entityName={'preferences'} {...this.props}/>
-    )
+class Preferences extends EntityListBaseComponent {
+  constructor(props) {
+    super(props);
+    this.entityName = 'preferences';
+    this.service = preferenceService;
   }
 }
 

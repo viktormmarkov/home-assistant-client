@@ -1,4 +1,5 @@
 import React from "react";
+import { capitalize } from 'lodash';
 import { Table, Button } from 'reactstrap';
 import ItemRow from './ItemRow';
 
@@ -33,7 +34,7 @@ export default class EntityListBaseComponent extends React.Component {
     return (
       <div className="animated fadeIn">
           <div className="section-header">
-            <h3 className="inline">{this.entityName}</h3>
+            <h3 className="inline">{capitalize(this.displayName || this.entityName)}</h3>
             <Button onClick={this.addItem} className="fright btn-sm" color="primary">Add</Button>
           </div>
 
