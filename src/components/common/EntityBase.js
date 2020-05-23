@@ -51,7 +51,7 @@ class EntityBase extends React.Component {
     }
     savePromise.then(
       res => {
-        this.props.history.pop();
+        this.props.history.goBack();
       },
       err => alert(err)
     );
@@ -59,8 +59,11 @@ class EntityBase extends React.Component {
 
   deleteItem = () => {
     const { id } = this.state;
+    const { history } = this.props;
     this.entityService.deleteItem(id).then(
-      res => console.log(res),
+      res => {
+        history.goBack();
+      },
       err => alert(err)
     );
   };

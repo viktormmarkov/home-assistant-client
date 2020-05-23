@@ -96,7 +96,7 @@ class ShoppingList extends Component {
       savePromise = shoppingListService.updateItem(shoppingListId, shoppingList);
     }
     savePromise.then(res => {
-      this.props.history.pop();
+      this.props.history.goBack();
     }, err => alert(err));
   }
 

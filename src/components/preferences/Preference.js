@@ -16,8 +16,8 @@ import {
 
 import EntityMenu from '../common/EntityMenu';
 class Preference extends EntityBase {
-  constructor(context) {
-    super(context);
+  constructor(props) {
+    super(props);
     this.entityService = preferenceService;
   }
 

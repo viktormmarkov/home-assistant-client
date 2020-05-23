@@ -14,8 +14,8 @@ import {
 
 import EntityMenu from '../common/EntityMenu';
 class Category extends EntityBase {
-  constructor(context) {
-    super(context);
+  constructor(props) {
+    super(props);
     this.entityService = categoryService;
   }
   render () {

@@ -9,7 +9,7 @@ const ModalExtended = () => {
   const Component = ModalConfig[dialog];
 
   return (
-    <Modal isOpen={dialogShown}>
+    <Modal isOpen={dialog && dialogShown}>
       {dialog && <Component/>}
     </Modal>
   );

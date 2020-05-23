@@ -19,8 +19,8 @@ import shoppingListService from "../../services/shoppingListService";
 import categoryService from '../../services/categoryService';
 
 class Product extends Component {
-  constructor(context) {
-    super(context);
+  constructor(props) {
+    super(props);
     this.state = {
       productId: this.props.match.params.id,
       product: {},
@@ -73,6 +73,7 @@ class Product extends Component {
 
   saveItem = () => {
     const { productId, product} = this.state;
+    const { history } = this.props;
     let savePromise;
     if (productId === 'new') {
       savePromise = productService.addItem([product]);
@@ -80,14 +81,16 @@ class Product extends Component {
       savePromise = productService.updateItem(productId, product);
     }
     savePromise.then(res => {
-      this.props.history.pop();
+      history.goBack();
     }, err => alert(err));
   }
 
   deleteItem = () => {
     const { productId } = this.state;
     productService.deleteItem(productId)
-      .then(res => console.log(res), err => alert(err));
+      .then(() => {
+        this.props.history.goBack();
+      }, err => alert(err));
   }
 
   addItemToList = () => {

@@ -84,6 +84,7 @@ class Products extends EntityListBaseComponent {
               valueField="_id"
               text="name"
               valueKey="_id"
+              allOption={true}
               onChange={selectedItem => {
                   this.updateSearch("category", selectedItem._id)
                 }

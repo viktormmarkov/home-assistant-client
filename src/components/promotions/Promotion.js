@@ -92,7 +92,7 @@ class Promotion extends Component {
     }
     savePromise.then(
       res => {
-        this.props.history.pop();
+        this.props.history.goBack();
       },
       err => alert(err)
     );
