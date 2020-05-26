@@ -7,6 +7,7 @@ import productService from '../../services/productService';
 import categoryService from "../../services/categoryService";
 import { Dropdown } from "../common";
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Products extends EntityListBaseComponent {
   constructor(props) {
@@ -30,7 +31,8 @@ class Products extends EntityListBaseComponent {
     this.setState({loading: true});
     this.service.query({personal: false})
       .then(items => {
-        this.setState({items, loading: false});
+        this.props.productsLoaded(items);
+        this.setState({loading: false});
       })
       .catch(err => {
         this.setState({loading: false});
@@ -56,8 +58,8 @@ class Products extends EntityListBaseComponent {
   }
 
   render() {
-    const {items} = this.state
-    const filtered = items.filter(i => {
+    const { products } = this.props;
+    const filtered = products.filter(i => {
       const {category, filter} = this.state.search;
       return (!filter || i.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1) &&
         (!category || i.categories.indexOf(category) !== -1); 
@@ -121,4 +123,12 @@ class Products extends EntityListBaseComponent {
   }
 }
 
-export default Products;
+const mapStateToProps = state => ({
+  products: state.product.list
+});
+
+const mapDispatchToProps = dispatch => ({
+  productsLoaded: (items) => {dispatch({type: 'LIST_LOADED', payload: items})}
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);

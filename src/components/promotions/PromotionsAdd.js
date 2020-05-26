@@ -95,7 +95,7 @@ class PromotionsAdd extends Component {
       promotions: [{
         name: '',
       }],
-      products: [],
+
       promotion: {
         startDate: moment().startOf('week').toDate(),
         endDate: moment().endOf('week').toDate()
@@ -123,9 +123,7 @@ class PromotionsAdd extends Component {
 
   updateStateProducts() {
     productService.query().then(products => {
-      this.setState({
-        products
-      });
+      this.props.productsLoaded(products);
     });
   }
 
@@ -149,7 +147,8 @@ class PromotionsAdd extends Component {
   }
 
   render() {
-    const {promotions, products, promotion} = this.state;
+    const {promotions, promotion} = this.state;
+    const {products} = this.props;
     return (
       <div className="animated fadeIn">
           <div className="section-header">
@@ -187,9 +186,14 @@ class PromotionsAdd extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  products: state.product.list
+});
+
 const mapDispatchToProps = dispatch => ({
+  productsLoaded: (items) => {dispatch({type: 'LIST_LOADED', payload: items})},
   openDialog: () => {dispatch({type: 'DIALOG_OPEN', payload: {type: 'ProductModal'}})}
 })
 
 
-export default connect(null, mapDispatchToProps)(PromotionsAdd);
+export default connect(mapStateToProps, mapDispatchToProps)(PromotionsAdd);
