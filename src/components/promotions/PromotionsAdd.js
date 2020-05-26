@@ -8,6 +8,7 @@ import promotionService from '../../services/promotionService';
 import productService from "../../services/productService";
 import { Dropdown, DatePeriodPicker} from "../common";
 import { connect } from 'react-redux';
+import {NotificationManager} from 'react-notifications';
 
 const calculateStatus = (period) => {
   if (moment().isBetween(period.startDate, period.endDate)) {
