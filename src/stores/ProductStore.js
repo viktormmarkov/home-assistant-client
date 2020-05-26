@@ -9,7 +9,6 @@ const productReducer = (state = initialState, action) => {
           list: [...action.payload]
         };
       case "ITEM_LOADED":
-        console.log(state.list);
         return {
           ...state,
           list: [...state.list, ...action.payload]
