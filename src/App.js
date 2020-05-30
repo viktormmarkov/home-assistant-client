@@ -5,6 +5,8 @@ import RegisterScreen from "./components/register/RegisterScreen";
 import DefaultLayout from "./containers/DefaultLayout";
 import { Provider } from 'react-redux';
 import { rootStore as store } from './stores/configureStores';
+import './infrastructure/PromiseShim';
+
 
 class App extends Component {
   render() {

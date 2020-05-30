@@ -7,7 +7,20 @@ import productService from '../../services/productService';
 import categoryService from "../../services/categoryService";
 import { Dropdown } from "../common";
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
+const PERSONAL_SELECTOR_ITEMS = [
+  {
+    text: 'All',
+    value: null
+  }, {
+    text: 'Personal',
+    value: true,
+  }, {
+    text: 'System',
+    value: false
+  }
+]
 class Products extends EntityListBaseComponent {
   constructor(props) {
     super(props);
@@ -28,9 +41,10 @@ class Products extends EntityListBaseComponent {
 
   getItems() {
     this.setState({loading: true});
-    this.service.query({personal: false})
+    this.service.query()
       .then(items => {
-        this.setState({items, loading: false});
+        this.props.productsLoaded(items);
+        this.setState({loading: false});
       })
       .catch(err => {
         this.setState({loading: false});
@@ -56,11 +70,13 @@ class Products extends EntityListBaseComponent {
   }
 
   render() {
-    const {items} = this.state
-    const filtered = items.filter(i => {
-      const {category, filter} = this.state.search;
+    const { products } = this.props;
+    const {category, filter, type} = this.state.search;
+
+    const filtered = products.filter(i => {
       return (!filter || i.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1) &&
-        (!category || i.categories.indexOf(category) !== -1); 
+        (!category || i.categories.indexOf(category) !== -1) && 
+        (!_.isBoolean(type) || !!i.personal === type); 
     });
     return (
       <div className="animated fadeIn">
@@ -91,7 +107,22 @@ class Products extends EntityListBaseComponent {
               }
               placeholder="Select Category"
               value={this.state.search.category}
-            ></Dropdown>
+            />
+            <Dropdown
+              searchDisabled={true}
+              items={PERSONAL_SELECTOR_ITEMS}
+              valueField="value"
+              text="text"
+              valueKey="value"
+              type="boolean"
+              onChange={selectedItem => {
+                  this.updateSearch("type", selectedItem.value)
+                }
+              }
+              placeholder="Select Type"
+              value={this.state.search.type}
+              className={'ml15'}
+            />
           </Row>
           <hr></hr>
           <Table responsive hover>
@@ -121,4 +152,12 @@ class Products extends EntityListBaseComponent {
   }
 }
 
-export default Products;
+const mapStateToProps = state => ({
+  products: state.product.list
+});
+
+const mapDispatchToProps = dispatch => ({
+  productsLoaded: (items) => {dispatch({type: 'LIST_LOADED', payload: items})}
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);

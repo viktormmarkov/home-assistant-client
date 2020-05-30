@@ -14,7 +14,6 @@ import { connect } from 'react-redux';
 import Multiselect from "../common/Multiselect";
 import productService from '../../services/productService';
 import categoryService from '../../services/categoryService';
-import {NotificationManager} from 'react-notifications';
 
 class ProductModal extends React.Component {
   constructor(props) {
@@ -34,10 +33,12 @@ class ProductModal extends React.Component {
   }
   confirm = () => {
     const {product} = this.state;
-    productService.addItem([product]).then(() => {
-      NotificationManager.success('Product added successfully');
-      this.props.dialogClose()
-    })
+    productService.addItem([product])
+      .then((item) => {
+        this.props.dialogClose();
+        this.props.productLoaded(item);
+      })
+      .messages({ok: 'Yep', error: 'Nope'})
   }
   render () {
     const {dialogClose} = this.props;
@@ -87,7 +88,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  dialogClose: () => {dispatch({type: 'DIALOG_CLOSE'})}
+  dialogClose: () => {dispatch({type: 'DIALOG_CLOSE'})},
+  productLoaded: (item) => {dispatch({type: 'ITEM_LOADED', payload: item})}
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductModal);

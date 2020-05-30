@@ -2,6 +2,24 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Input } from 'reactstrap';
 
+const str2bool = (value) => {
+    if (value && typeof value === 'string') {
+      if (value.toLowerCase() === "true") return true;
+      if (value.toLowerCase() === "false") return false;
+      if (value.toLowerCase() === "null") return null;
+    }
+    return value;
+ }
+
+const convertToType = (type, value) => {
+    switch (type) {
+        case 'boolean':
+            return str2bool(value);
+        default :
+            return value;
+    }
+}
+
 export default class SmartDropdown extends Component {
     constructor() {
         super();
@@ -34,7 +52,8 @@ export default class SmartDropdown extends Component {
     }
     updateValue = (e) => {
         if (this.props.onChange) {
-            const selected = this.getSelected(e.target.value);
+            const {type} = this.props;
+            const selected = this.getSelected(convertToType(type, e.target.value));
             this.props.onChange(selected);            
         }
         const selectedIndex = this.getSelectedIndex(e.target.value);
@@ -57,7 +76,7 @@ export default class SmartDropdown extends Component {
         const ALL_OPTION = {[valueKey]: null, [text]: "All"};
         const itemsExtended = allOption ? [ALL_OPTION, ...items] : items;
         return (
-            <Dropdown isOpen={this.state.isOpen} toggle={() => {this.toggle();}}>
+            <Dropdown isOpen={this.state.isOpen} toggle={() => {this.toggle();}} className={this.props.className}>
                 <DropdownToggle caret>
                     {selected[text] || this.props.placeholder || placeholder}
                 </DropdownToggle>
