@@ -9,6 +9,18 @@ import { Dropdown } from "../common";
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+const PERSONAL_SELECTOR_ITEMS = [
+  {
+    text: 'All',
+    value: null
+  }, {
+    text: 'Personal',
+    value: true,
+  }, {
+    text: 'System',
+    value: false
+  }
+]
 class Products extends EntityListBaseComponent {
   constructor(props) {
     super(props);
@@ -29,7 +41,7 @@ class Products extends EntityListBaseComponent {
 
   getItems() {
     this.setState({loading: true});
-    this.service.query({personal: false})
+    this.service.query()
       .then(items => {
         this.props.productsLoaded(items);
         this.setState({loading: false});
@@ -59,10 +71,12 @@ class Products extends EntityListBaseComponent {
 
   render() {
     const { products } = this.props;
+    const {category, filter, type} = this.state.search;
+
     const filtered = products.filter(i => {
-      const {category, filter} = this.state.search;
       return (!filter || i.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1) &&
-        (!category || i.categories.indexOf(category) !== -1); 
+        (!category || i.categories.indexOf(category) !== -1) && 
+        (!_.isBoolean(type) || !!i.personal === type); 
     });
     return (
       <div className="animated fadeIn">
@@ -93,7 +107,22 @@ class Products extends EntityListBaseComponent {
               }
               placeholder="Select Category"
               value={this.state.search.category}
-            ></Dropdown>
+            />
+            <Dropdown
+              searchDisabled={true}
+              items={PERSONAL_SELECTOR_ITEMS}
+              valueField="value"
+              text="text"
+              valueKey="value"
+              type="boolean"
+              onChange={selectedItem => {
+                  this.updateSearch("type", selectedItem.value)
+                }
+              }
+              placeholder="Select Type"
+              value={this.state.search.type}
+              className={'ml15'}
+            />
           </Row>
           <hr></hr>
           <Table responsive hover>
