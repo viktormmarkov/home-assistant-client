@@ -100,10 +100,11 @@ class Promotion extends Component {
 
   deleteItem = () => {
     const { promotionId } = this.state;
-    promotionService.deleteItem(promotionId).then(
-      res => console.log(res),
-      err => alert(err)
-    );
+    promotionService.deleteItem(promotionId)
+      .then(() => {
+        this.props.history.goBack();
+      })
+      .messages({delete: `Successfully deleted ${promotionId}`});
   };
 
   addItemToList = () => {
