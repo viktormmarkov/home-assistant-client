@@ -45,7 +45,7 @@ import ${serviceFileName} from '../../services/${serviceFileName}';
 class ${_.capitalize(entityPlural)} extends EntityListBaseComponent {
   constructor(props){
     super(props);
-    this.entityName = ${entityPlural};
+    this.entityName = '${entityPlural}';
     this.service = ${serviceFileName};
   }
 }

@@ -13,7 +13,9 @@ import ShoppingList from './components/shoppingLists/ShoppingList'
 import Preferences from "./components/preferences/Preferences";
 import Preference from "./components/preferences/Preference";
 import Permissions from "./components/permissions/Permissions";
-import PromotionsAdd from './components/promotions/PromotionsAdd'
+import PromotionsAdd from './components/promotions/PromotionsAdd';
+import Campaigns from "./components/campaigns/Campaigns";
+import Campaign from "./components/campaigns/Campaign";
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -30,10 +32,11 @@ const routes = [
   { path: '/categories/:id', exact: true, name: 'Category', component: Category },
   { path: '/shoppingLists', exact: true, name: 'Shopping Lists', component: ShoppingLists },
   { path: '/shoppingLists/:id', exact: true, name: 'Shopping List', component: ShoppingList },
-  { path: '/shoppingLists/:id', exact: true, name: 'Shopping List', component: ShoppingList },
   { path: '/preferences', exact: true, name: 'Preferences List', component: Preferences },
   { path: '/preferences/:id', exact: true, name: 'Preference', component: Preference },
   { path: '/permissions', exact: true, name: 'Permissions', component: Permissions },
+  { path: '/campaigns', exact: true, name: 'Campaigns', component: Campaigns },
+  { path: '/campaigns/:id', exact: true, name: 'Campaign', component: Campaign },
 ];
 
 export default routes;
