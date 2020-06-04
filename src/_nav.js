@@ -11,6 +11,11 @@ export default {
       icon: "icon-present"
     },
     {
+      name: "Shops",
+      url: "/shops",
+      icon: "icon-present"
+    },
+    {
       name: "Products",
       url: "/products",
       icon: "icon-star"

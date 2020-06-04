@@ -16,6 +16,8 @@ import Permissions from "./components/permissions/Permissions";
 import PromotionsAdd from './components/promotions/PromotionsAdd';
 import Campaigns from "./components/campaigns/Campaigns";
 import Campaign from "./components/campaigns/Campaign";
+import Shops from "./components/shops/Shops";
+import Shop from "./components/shops/Shop";
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -37,6 +39,8 @@ const routes = [
   { path: '/permissions', exact: true, name: 'Permissions', component: Permissions },
   { path: '/campaigns', exact: true, name: 'Campaigns', component: Campaigns },
   { path: '/campaigns/:id', exact: true, name: 'Campaign', component: Campaign },
+  { path: '/shops', exact: true, name: 'Shops', component: Shops },
+  { path: '/shops/:id', exact: true, name: 'Shop', component: Shop },
 ];
 
 export default routes;
