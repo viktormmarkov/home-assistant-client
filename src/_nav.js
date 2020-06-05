@@ -3,42 +3,42 @@ export default {
     {
       name: "Promotions",
       url: "/promotions",
-      icon: "icon-present"
+      icon: "fa fa-gift"
     },
     {
       name: "Campaigns",
       url: "/campaigns",
-      icon: "icon-present"
+      icon: "fa fa-calendar-week"
     },
     {
       name: "Shops",
       url: "/shops",
-      icon: "icon-present"
+      icon: "fa fa-industry"
     },
     {
       name: "Products",
       url: "/products",
-      icon: "icon-star"
+      icon: "fa fa-star"
     },
     {
       name: "Categories",
       url: "/categories",
-      icon: "icon-equalizer"
+      icon: "fa fa-sliders-h"
     },
     {
       name: "Shopping List",
       url: "/shoppingLists",
-      icon: "icon-notebook"
+      icon: "far fa-clipboard"
     },
     {
       name: "User Preferences",
       url: "/preferences",
-      icon: "icon-settings"
+      icon: "fa fa-cogs"
     },
     {
       name: "Permissions",
       url: "/permissions",
-      icon: "icon-settings"
+      icon: "fa fa-lock"
     }
   ]
 };
