@@ -29,6 +29,10 @@ export default class EntityListBaseComponent extends React.Component {
     this.props.history.push(`/${this.entityName}/new`);
   }
 
+  getListItem = (item, index) => {
+    return (<ItemRow key={index} item={item} entityName={this.entityName}/>)
+  }
+
   render() {
     const {items} = this.state
     return (
@@ -47,9 +51,7 @@ export default class EntityListBaseComponent extends React.Component {
               </tr>
             </thead>
             <tbody>
-                { items.map((item, index) => 
-                    <ItemRow key={index} item={item} entityName={this.entityName}/>) 
-                }
+                { items.map((item, index) => this.getListItem(item, index)) }
               </tbody>
           </Table>
       </div>
