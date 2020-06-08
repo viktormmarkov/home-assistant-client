@@ -1,5 +1,3 @@
-
-import React, { Component } from 'react';
 import EntityListBaseComponent from '../common/EntityListBaseComponent';
 import categoryService from '../../services/categoryService';
 

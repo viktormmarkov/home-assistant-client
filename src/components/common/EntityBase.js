@@ -17,7 +17,7 @@ class EntityBase extends React.Component {
   getStateItem() {
     const { id } = this.state;
     if (id === "new") {
-      this.setState({ isNewEntity: true });
+      this.setState({ isNewEntity: true, item: this.defaultItemData || {}});
     } else {
       this.getItem();
     }
