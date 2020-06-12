@@ -2,8 +2,9 @@ import React from 'react';
 import * as _ from 'lodash';
 import EntityListBaseComponent from '../common/EntityListBaseComponent';
 import promotionService from '../../services/promotionService';
-import { Table, Button} from 'reactstrap';
+import { Table, Button, Row, Col} from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { Dropdown } from '../common';
 
 class Promotions extends EntityListBaseComponent {
   constructor(props) {
@@ -14,15 +15,28 @@ class Promotions extends EntityListBaseComponent {
     this.state = {
       ...this.state,
       search: {
-        filter: ''
+        filter: '',
+        status: 'active'
       }
     };
   }
   addItems = () => {
     this.props.history.push(`/${this.entityName}/add`);
   }
+  updateSearch = (name, value) => {
+    const { search } = this.state;
+    search[name] = value;
+    this.setState({search});
+  }
   render() {
-    const {items} = this.state
+    const {items, search} = this.state;
+    const {filter, status} = search;
+
+    const filtered = items.filter(i => {
+      return (!filter || i.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1) &&
+        (!status || i.status === status)
+      });
+
     return (
       <div className="animated fadeIn">
           <div className="section-header">
@@ -30,6 +44,31 @@ class Promotions extends EntityListBaseComponent {
             <Button onClick={this.addItem} className="fright btn-sm entity-menu-button" color="primary">Add</Button>
             <Button onClick={this.addItems} className="fright btn-sm entity-menu-button" color="primary">Add Items</Button>
           </div>
+          <Row>
+            <Col>
+              <Dropdown 
+                items={[{
+                    value: 'active',
+                    text: 'Active'  
+                  }, {
+                    value: 'expired',
+                    text: 'Expired'
+                  }, {
+                    value: 'pending',
+                    text: 'Pending'
+                  }
+                ]}
+                valueField="value"
+                text="text"
+                allOption
+                valueKey="value"
+                onChange={selectedItem => this.updateSearch("status", selectedItem.value)}
+                placeholder="Select Status"
+                value={this.state.search.status}>
+            </Dropdown>
+            </Col>
+          </Row>
+          <hr></hr>
           <Table responsive hover>
             <thead className="thead-light">
               <tr>
@@ -38,7 +77,7 @@ class Promotions extends EntityListBaseComponent {
               </tr>
             </thead>
             <tbody>
-                { items.map((item, index) => {
+                { filtered.map((item, index) => {
                      const entityName = this.entityName;
                      return (
                        <tr key={item._id}>
