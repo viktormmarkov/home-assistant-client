@@ -26,7 +26,7 @@ export class PromotionBox extends React.Component {
               <Label sm={3} htmlFor="product">Product</Label>
               <Col sm={9}>
                 <Dropdown
-                  items={products}
+                  items={products.sort((a,b) => ('' + a.name).localeCompare(b.name))}
                   id="product"
                   valueField="_id"
                   text="name"
