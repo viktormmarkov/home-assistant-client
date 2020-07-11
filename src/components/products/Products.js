@@ -48,7 +48,7 @@ class Products extends EntityListBaseComponent {
       })
       .catch(err => {
         this.setState({loading: false});
-      })
+      });
   }
 
   getCategories() {
