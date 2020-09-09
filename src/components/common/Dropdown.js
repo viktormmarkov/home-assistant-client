@@ -94,7 +94,7 @@ export default class SmartDropdown extends Component {
                         key={(valueKey && i[valueKey]) || index} 
                         onClick={this.updateValue} 
                         value={i[valueKey]} 
-                        active={index === this.state.selectedIndex}>
+                        active={i[valueKey] === selected[valueKey]}>
                             {i[text]}
                         </DropdownItem>))}
                     </div>
