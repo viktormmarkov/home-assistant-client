@@ -8,6 +8,7 @@ import categoryService from "../../services/categoryService";
 import { Dropdown } from "../common";
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import ProductsDataProvider from '../../dataProviders/ProductsDataProvider';
 
 const PERSONAL_SELECTOR_ITEMS = [
   {
@@ -20,7 +21,8 @@ const PERSONAL_SELECTOR_ITEMS = [
     text: 'System',
     value: false
   }
-]
+];
+
 class Products extends EntityListBaseComponent {
   constructor(props) {
     super(props);
@@ -32,31 +34,14 @@ class Products extends EntityListBaseComponent {
         filter: ''
       }
     };
+    this.provider = new ProductsDataProvider();
   }
 
   componentDidMount() {
-    super.componentDidMount();
-    this.getCategories()
-  }
-
-  getItems() {
     this.setState({loading: true});
-    this.service.query()
-      .then(items => {
-        this.props.productsLoaded(items);
-        this.setState({loading: false});
-      })
-      .catch(err => {
-        this.setState({loading: false});
-      });
-  }
-
-  getCategories() {
-    categoryService.query().then(categories => {
-      this.setState({
-        categories
-      });
-    })
+    this.provider.load(this.props).finally(() => {
+      this.setState({loading: false});
+    });
   }
 
   addItems = () => {
@@ -96,7 +81,7 @@ class Products extends EntityListBaseComponent {
               />  
             </Col>
             <Dropdown
-              items={this.state.categories}
+              items={this.props.categories}
               valueField="_id"
               text="name"
               valueKey="_id"
@@ -153,11 +138,12 @@ class Products extends EntityListBaseComponent {
 }
 
 const mapStateToProps = state => ({
-  products: state.product.list
+  products: state.product.list,
+  categories: state.category.list
 });
 
 const mapDispatchToProps = dispatch => ({
-  productsLoaded: (items) => {dispatch({type: 'LIST_LOADED', payload: items})}
+  dispatch,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);

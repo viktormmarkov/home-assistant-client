@@ -17,6 +17,7 @@ import Multiselect from "../common/Multiselect";
 import productService from '../../services/productService';
 import shoppingListService from "../../services/shoppingListService";
 import categoryService from '../../services/categoryService';
+import { connect } from 'react-redux';
 
 class Product extends Component {
   constructor(props) {
@@ -154,4 +155,12 @@ class Product extends Component {
   }
 }
 
-export default Product;
+const mapStateToProps = state => ({
+  products: state.product.list
+});
+
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Product);

@@ -1,9 +1,9 @@
 const initialState = {
   list: [],
 }
-const entityType = 'product';
+const entityType = 'category';
 
-const productReducer = (state = initialState, action) => {
+const categoryReducer = (state = initialState, action) => {
     switch (action.type) {
       case "LIST_LOADED":
         if (action.entityType !== entityType) {
@@ -26,4 +26,4 @@ const productReducer = (state = initialState, action) => {
     }
   };
 
-export default productReducer;
+export default categoryReducer;
