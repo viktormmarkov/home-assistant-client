@@ -133,8 +133,7 @@ class Campaign extends EntityBase {
               valueKey="_id"
               onChange={selectedItem => {
                 this.updateField("shop", selectedItem._id)
-              }
-              }
+              }}
               placeholder="Select Shop"
               value={item.shop}
             ></Dropdown>
