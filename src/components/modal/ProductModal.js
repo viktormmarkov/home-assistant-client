@@ -34,7 +34,7 @@ class ProductModal extends React.Component {
   confirm = () => {
     const {product} = this.state;
     productService.addItem([product])
-      .then((item) => {
+      .then(([item]) => {
         this.props.dialogClose();
         this.props.productLoaded(item);
       })
@@ -89,7 +89,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   dialogClose: () => {dispatch({type: 'DIALOG_CLOSE'})},
-  productLoaded: (item) => {dispatch({type: 'ITEM_LOADED', payload: item})}
+  productLoaded: (item) => {dispatch({type: 'ITEM_SAVED', payload: item, entityType: 'product'})}
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductModal);

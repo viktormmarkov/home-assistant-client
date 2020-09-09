@@ -13,7 +13,7 @@ const categoryReducer = (state = initialState, action) => {
           ...state,
           list: [...action.payload]
         };
-      case "ITEM_LOADED":
+      case "ITEM_SAVED":
         if (action.entityType !== entityType) {
           return {...state};
         }

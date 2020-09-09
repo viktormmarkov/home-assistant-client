@@ -81,8 +81,10 @@ class Product extends Component {
     } else {
       savePromise = productService.updateItem(productId, product);
     }
-    savePromise.then(res => {
+
+    savePromise.then(data => {
       history.goBack();
+      this.props.productSaved(data);
     }, err => alert(err));
   }
 
@@ -91,6 +93,7 @@ class Product extends Component {
     productService.deleteItem(productId)
       .then(() => {
         this.props.history.goBack();
+        this.props.productDeleted(this.state.product);
       }, err => alert(err));
   }
 
@@ -161,6 +164,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
+  productSaved: (item) => {dispatch({type: 'ITEM_SAVED', payload: item, entityType: 'product'})},
+  productDeleted: (item) => {dispatch({type: 'ITEM_DELETED', payload: item, entityType: 'product'})}
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Product);

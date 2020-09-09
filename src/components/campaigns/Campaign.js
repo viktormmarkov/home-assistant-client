@@ -157,7 +157,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  productsLoaded: (items) => { dispatch({ type: 'LIST_LOADED', payload: items }) },
+  productsLoaded: (items) => { dispatch({ type: 'LIST_LOADED', payload: items, entityType: 'product' }) },
   openDialog: () => { dispatch({ type: 'DIALOG_OPEN', payload: { type: 'ProductModal' } }) }
 })
 
