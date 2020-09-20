@@ -1,7 +1,3 @@
-// check existing data in cache
-// fetch data
-// populate data in stores 
-// return up to date data
 import productService from '../services/productService';
 import categoryService from '../services/categoryService';
 
