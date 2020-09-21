@@ -31,7 +31,7 @@ class Campaigns extends EntityListBaseComponent {
           {shopName} - 
           <PeriodFormat 
             start={item.startDate} 
-            end={item.end}
+            end={item.endDate}
           />
         </Link>
       </td>
