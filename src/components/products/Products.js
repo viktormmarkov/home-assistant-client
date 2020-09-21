@@ -4,7 +4,6 @@ import * as _ from 'lodash';
 import EntityListBaseComponent from '../common/EntityListBaseComponent';
 import { Table, Button, Input, Row, Col } from 'reactstrap';
 import productService from '../../services/productService';
-import categoryService from "../../services/categoryService";
 import { Dropdown } from "../common";
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
