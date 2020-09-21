@@ -53,6 +53,18 @@ export class PromotionBox extends React.Component {
               </Col>
             </FormGroup>
             <FormGroup row>
+              <Label sm={3} htmlFor="product">Subtitle</Label>
+              <Col sm={9}>
+                <Input
+                    id={`${promotion._id}-subtitle`}
+                    type="text"
+                    value={promotion.subtitle}
+                    placeholder="Product Subtitle"
+                    onChange={(event) => this.updateField('subtitle', event.target.value)}
+                  />
+              </Col>
+            </FormGroup>
+            <FormGroup row>
               <Label sm={3} htmlFor={`${promotion._id}-price`}>Price</Label>
               <Col sm={9}>
                 <Input

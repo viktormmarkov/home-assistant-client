@@ -158,6 +158,17 @@ class Promotion extends Component {
                   />
                 </FormGroup>
                 <FormGroup>
+                  <Label htmlFor="subtitle">Subtitle</Label>
+                  <Input
+                    id="subtitle"
+                    type="Text"
+                    value={promotion.subtitle}
+                    onChange={event =>
+                      this.updateField("subtitle", event.target.value)
+                    }
+                  />
+                </FormGroup>
+                <FormGroup>
                   <Label htmlFor="price">Price</Label>
                   <Input
                     id="price"
@@ -165,6 +176,17 @@ class Promotion extends Component {
                     value={promotion.price}
                     onChange={event =>
                       this.updateField("price", event.target.value)
+                    }
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label htmlFor="oldPrice">Old Price</Label>
+                  <Input
+                    id="oldPrice"
+                    type="number"
+                    value={promotion.oldPrice}
+                    onChange={event =>
+                      this.updateField("oldPrice", event.target.value)
                     }
                   />
                 </FormGroup>
