@@ -15,6 +15,7 @@ import EntityMenu from "../common/EntityMenu";
 import promotionService from "../../services/promotionService";
 import shoppingListService from "../../services/shoppingListService";
 import productService from "../../services/productService";
+import shopService from "../../services/shopService";
 
 const STATUSES = [{
     value: 'active',
@@ -41,6 +42,7 @@ class Promotion extends Component {
   componentDidMount() {
     this.updateStatePromotion();
     this.updateStateProducts();
+    this.getShops();
   }
   updateStatePromotion() {
     const { promotionId } = this.state;
@@ -74,6 +76,12 @@ class Promotion extends Component {
     shoppingListService.query().then(list => {
       this.setState({ shoppingList: list[0] });
     });
+  }
+
+  getShops = () => {
+    shopService.query().then(list => {
+      this.setState({ shops: list});
+    })
   }
 
   updateField = (name, value) => {
@@ -114,8 +122,7 @@ class Promotion extends Component {
   };
 
   render() {
-    const { promotion } = this.state;
-    /* Add all of the properties, labels and loading state*/
+    const { promotion, shops } = this.state;
     return (
       <div className="animated fadeIn">
         <div className="section-header">
@@ -151,6 +158,17 @@ class Promotion extends Component {
                   />
                 </FormGroup>
                 <FormGroup>
+                  <Label htmlFor="subtitle">Subtitle</Label>
+                  <Input
+                    id="subtitle"
+                    type="Text"
+                    value={promotion.subtitle}
+                    onChange={event =>
+                      this.updateField("subtitle", event.target.value)
+                    }
+                  />
+                </FormGroup>
+                <FormGroup>
                   <Label htmlFor="price">Price</Label>
                   <Input
                     id="price"
@@ -158,6 +176,17 @@ class Promotion extends Component {
                     value={promotion.price}
                     onChange={event =>
                       this.updateField("price", event.target.value)
+                    }
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label htmlFor="oldPrice">Old Price</Label>
+                  <Input
+                    id="oldPrice"
+                    type="number"
+                    value={promotion.oldPrice}
+                    onChange={event =>
+                      this.updateField("oldPrice", event.target.value)
                     }
                   />
                 </FormGroup>
@@ -204,6 +233,20 @@ class Promotion extends Component {
                     placeholder="Select Status"
                     value={promotion.status}
                   ></Dropdown>
+                </FormGroup>
+                <FormGroup>
+                <Dropdown
+                      items={shops}
+                      id="shop"
+                      valueField="_id"
+                      text="name"
+                      valueKey="_id"
+                      onChange={selectedItem => {
+                        this.updateField("shop", selectedItem._id)
+                      }}
+                      placeholder="Select Shop"
+                      value={promotion.shop}
+                    ></Dropdown>
                 </FormGroup>
               </Col>
             </Row>

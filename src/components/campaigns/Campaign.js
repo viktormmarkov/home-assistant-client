@@ -13,6 +13,16 @@ import campaignService from '../../services/campaignService';
 import productService from "../../services/productService";
 import shopService from "../../services/shopService";
 
+const PERSONAL_SELECTOR_ITEMS = [
+ {
+    text: 'Draft',
+    value: true,
+  }, {
+    text: 'Published',
+    value: false
+  }
+];
+
 const calculateStatus = (period) => {
   if (moment().isBetween(period.startDate, period.endDate)) {
     return 'active';
@@ -138,6 +148,22 @@ class Campaign extends EntityBase {
               value={item.shop}
             ></Dropdown>
         </FormGroup>
+        <FormGroup>
+          
+        <Dropdown
+              searchDisabled={true}
+              items={PERSONAL_SELECTOR_ITEMS}
+              valueField="value"
+              text="text"
+              valueKey="value"
+              type="boolean"
+              placeholder="Select Type"
+              value={item.draft}
+              onChange={selectedItem => {
+                  this.updateField("draft", selectedItem.value)
+                }
+              } />              
+        </FormGroup>
         <hr></hr>
         <Row>
           {promotions.map((p, i) =>
@@ -157,7 +183,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  productsLoaded: (items) => { dispatch({ type: 'LIST_LOADED', payload: items }) },
+  productsLoaded: (items) => { dispatch({ type: 'LIST_LOADED', payload: items, entityType: 'product' }) },
   openDialog: () => { dispatch({ type: 'DIALOG_OPEN', payload: { type: 'ProductModal' } }) }
 })
 
