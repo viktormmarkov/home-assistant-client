@@ -3,13 +3,6 @@ import { FormGroup, Label, Input, Button, Card, CardBody, Form, Col, } from 'rea
 import { Dropdown } from "../common";
 
 export class PromotionBox extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      addProduct: false
-    }
-  }
-
   updateField = (name, value) => {
     const { promotion } = this.props;
     promotion[name] = value;
@@ -17,7 +10,7 @@ export class PromotionBox extends React.Component {
   }
 
   render() {
-    const { promotion, products } = this.props;
+    const { promotion, products, isNewEntity} = this.props;
     return (
       <Form className={this.props.className}>
         <Card>
@@ -88,6 +81,8 @@ export class PromotionBox extends React.Component {
                 />
               </Col>
             </FormGroup>
+            {!isNewEntity && <Button block color="primary" onClick={this.props.updateItem} className="btn-sm">Save</Button>}
+
           </CardBody>
         </Card>
       </Form>

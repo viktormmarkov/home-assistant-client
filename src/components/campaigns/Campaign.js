@@ -107,6 +107,9 @@ class Campaign extends EntityBase {
       promotions: this.state.promotions.filter((v, k) => k !== i)
     })
   }
+  updateItem = (promotion) => {
+    promotionService.updateItem(promotion._id, promotion);
+  }
 
   render() {
     const { promotions, item, shops} = this.state;
@@ -167,7 +170,12 @@ class Campaign extends EntityBase {
         <hr></hr>
         <Row>
           {promotions.map((p, i) =>
-            <PromotionBox className="col-sm-4" key={i} promotion={p} products={products} removeItem={this.removeItem.bind(this, i)}/>
+            <PromotionBox className="col-sm-4" key={i} promotion={p} 
+              products={products} 
+              removeItem={this.removeItem.bind(this, i)}
+              updateItem={this.updateItem.bind(this, p)}
+              isNewEntity={this.state.isNewEntity}
+            />
           )}
           <FormGroup className="col-sm-12">
             <Button onClick={this.addPromotion} size="lg" outline color="primary">Add Item</Button>
