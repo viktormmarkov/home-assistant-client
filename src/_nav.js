@@ -39,6 +39,11 @@ export default {
       name: "Permissions",
       url: "/permissions",
       icon: "fa fa-lock"
+    },
+    {
+      name: "Locales",
+      url: "/locales",
+      icon: "fa fa-book"
     }
   ]
 };

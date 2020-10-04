@@ -3,7 +3,7 @@
 // populate data in stores 
 // return up to date data
 
-class BaseDataProvider {
+export default class BaseDataProvider {
     constructor() {
         this.definitions = [];
     }
@@ -25,7 +25,14 @@ class BaseDataProvider {
 
     }
 
-    load = () => {
-        
+    load = async (props) => {
+        const loaded = this.definitions.map(({service, action, keyName, entityType}) => {
+            if (!props[keyName] || !props[keyName].length) {
+                return service.query().then(res => {
+                    props.dispatch({type: action, payload: res, entityType});
+                });
+            }
+        });
+        return Promise.all(loaded); 
     }
 }

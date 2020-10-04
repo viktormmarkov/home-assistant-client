@@ -33,8 +33,12 @@ export default class EntityListBaseComponent extends React.Component {
     return (<ItemRow key={index} item={item} entityName={this.entityName}/>)
   }
 
+  getListItems = () => {
+    return this.state.items;
+  }
+
   render() {
-    const {items} = this.state
+    const items = this.getListItems();
     return (
       <div className="animated fadeIn">
           <div className="section-header">

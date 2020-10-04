@@ -18,6 +18,8 @@ import Campaigns from "./components/campaigns/Campaigns";
 import Campaign from "./components/campaigns/Campaign";
 import Shops from "./components/shops/Shops";
 import Shop from "./components/shops/Shop";
+import Locales from "./components/locales/Locales";
+// // import Locale from "./components/locales/Locale";
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -41,6 +43,8 @@ const routes = [
   { path: '/campaigns/:id', exact: true, name: 'Campaign', component: Campaign },
   { path: '/shops', exact: true, name: 'Shops', component: Shops },
   { path: '/shops/:id', exact: true, name: 'Shop', component: Shop },
+  { path: '/locales', exact: true, name: 'Locales', component: Locales },
+  // { path: '/locales/:id', exact: true, name: 'Locale', component: Locale },
 ];
 
 export default routes;
