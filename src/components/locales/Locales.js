@@ -11,12 +11,6 @@ class Locales extends EntityListBaseComponent {
     super(props);
     this.service = localeService; 
     this.entityName = 'locales';
-    this.state = {
-      ...this.state,
-      search: {
-        filter: ''
-      }
-    };
     this.provider = new LocalesDataProvider();
   }
 

@@ -1,4 +1,5 @@
 import React from "react";
+import * as _ from "lodash";
 
 class EntityBase extends React.Component {
   constructor(context) {
@@ -37,8 +38,8 @@ class EntityBase extends React.Component {
 
   updateField = (name, value) => {
     const { item } = this.state;
-    item[name] = value;
-    this.setState({ item });
+    const updated = _.set(item, name, value);
+    this.setState({ item: updated });
   };
 
   saveItem = () => {
