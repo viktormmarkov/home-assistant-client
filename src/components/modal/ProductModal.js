@@ -14,6 +14,8 @@ import { connect } from 'react-redux';
 import Multiselect from "../common/Multiselect";
 import productService from '../../services/productService';
 import categoryService from '../../services/categoryService';
+import localeService from '../../services/localeService';
+import { Dropdown } from "../common";
 
 class ProductModal extends React.Component {
   constructor(props) {
@@ -22,6 +24,8 @@ class ProductModal extends React.Component {
       product: {
         name: 'Product Name'
       },
+      language: null,
+      translation: null,
       categories: []
     }
   }
@@ -32,47 +36,94 @@ class ProductModal extends React.Component {
     this.setState({product: {...this.state.product, [key]: value}});
   }
   confirm = () => {
-    const {product} = this.state;
+    const {product, language, translation} = this.state;
     productService.addItem([product])
       .then(([item]) => {
         this.props.dialogClose();
         this.props.productLoaded(item);
       })
-      .messages({ok: 'Yep', error: 'Nope'})
+      .messages({ok: 'Yep', error: 'Nope'});
+    localeService.addTranslationKey(language, {[product.name]: translation})
+      .messages({ok: 'Added Locale', error: 'Failed to add locale'});
   }
   render () {
-    const {dialogClose} = this.props;
-    const {product, categories} = this.state;
+    const {dialogClose, locales} = this.props;
+    const {product, categories, language, translation} = this.state;
+
     return (
       <React.Fragment>
         <ModalHeader>Add Product</ModalHeader>
         <ModalBody>
           <Row>
-              <Col>
-                <FormGroup>
-                  <Label htmlFor="name">Name</Label>
-                  <Input
-                    id="name"
-                    type="Text"
-                    value={product.name}
-                    onChange={(event) => this.updateField('name', event.target.value)}
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <FormGroup>
-                  <Label htmlFor="category">Categories</Label>
-                  <Multiselect
-                    options={categories}
-                    value={product.categories}
-                    onChange={(selected) => this.updateField('categories', _.map(selected, s => s.value))}
-                  >
-                  </Multiselect>
-                </FormGroup>
-              </Col>
-            </Row>
+            <Col>
+              <FormGroup>
+                <Label htmlFor="name">Name</Label>
+                <Input
+                  id="name"
+                  type="Text"
+                  value={product.name}
+                  onChange={(event) => this.updateField('name', event.target.value)}
+                />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <FormGroup>
+                <Label htmlFor="category">Categories</Label>
+                <Multiselect
+                  options={categories}
+                  value={product.categories}
+                  onChange={(selected) => this.updateField('categories', _.map(selected, s => s.value))}
+                >
+                </Multiselect>
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+            <FormGroup>
+              <Dropdown
+                  items={locales}
+                  id="locale"
+                  valueField="_id"
+                  text="language"
+                  valueKey="_id"
+                  onChange={selectedItem => {
+                    this.setState({language: selectedItem._id})
+                  }}
+                  placeholder="Select language"
+                  value={language}>
+              </Dropdown>
+            </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <FormGroup>
+                <Label htmlFor="key">Key</Label>
+                <Input
+                  id="key"
+                  type="Text"
+                  value={product.name}
+                  disabled
+                />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <FormGroup>
+                <Label htmlFor="value">Value</Label>
+                <Input
+                  id="value"
+                  type="Text"
+                  value={translation}
+                  onChange={(event) => this.setState({translation: event.target.value})}
+                />
+              </FormGroup>
+            </Col>
+          </Row>
         </ModalBody>
         <ModalFooter>
           <Button color="secondary" onClick={dialogClose}>Cancel</Button>
@@ -85,6 +136,7 @@ class ProductModal extends React.Component {
 
 const mapStateToProps = state => ({
   params: state.dialog.params,
+  locales: state.locale.list
 })
 
 const mapDispatchToProps = dispatch => ({

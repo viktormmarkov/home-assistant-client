@@ -1,10 +1,10 @@
 /* generated via createView script */
 import ServiceBase from './serviceBase';
 
-class Campaignservice extends ServiceBase {
+class CampaignService extends ServiceBase {
     constructor() {
         super('campaigns');
     }
 }
 
-export default new Campaignservice();
+export default new CampaignService();
