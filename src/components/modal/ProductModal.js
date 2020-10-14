@@ -16,21 +16,23 @@ import productService from '../../services/productService';
 import categoryService from '../../services/categoryService';
 import localeService from '../../services/localeService';
 import { Dropdown } from "../common";
+import ProductModalDataProvider from "../../dataProviders/ProductModalDataProvider";
 
 class ProductModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       product: {
-        name: 'Product Name'
+        name: 'Product Name',
+        categories: []
       },
-      language: null,
-      translation: null,
-      categories: []
+      language: undefined,
+      translation: undefined,
     }
+    this.provider = new ProductModalDataProvider();
   }
   componentDidMount = () => {
-    categoryService.query().then(categories => this.setState({categories}));
+    this.provider.load(this.props);
   }
   updateField = (key, value) => {
     this.setState({product: {...this.state.product, [key]: value}});
@@ -47,8 +49,8 @@ class ProductModal extends React.Component {
       .messages({ok: 'Added Locale', error: 'Failed to add locale'});
   }
   render () {
-    const {dialogClose, locales} = this.props;
-    const {product, categories, language, translation} = this.state;
+    const {dialogClose, locales, categories} = this.props;
+    const {product, language, translation} = this.state;
 
     return (
       <React.Fragment>
@@ -136,12 +138,14 @@ class ProductModal extends React.Component {
 
 const mapStateToProps = state => ({
   params: state.dialog.params,
-  locales: state.locale.list
+  locales: state.locale.list,
+  categories: state.category.list
 })
 
 const mapDispatchToProps = dispatch => ({
+  dispatch,
   dialogClose: () => {dispatch({type: 'DIALOG_CLOSE'})},
-  productLoaded: (item) => {dispatch({type: 'ITEM_SAVED', payload: item, entityType: 'product'})}
+  productLoaded: (item) => {dispatch({type: 'ITEM_SAVED', payload: item, entityType: 'product'})},
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductModal);
