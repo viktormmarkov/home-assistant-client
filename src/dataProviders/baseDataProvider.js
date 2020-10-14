@@ -29,10 +29,12 @@ export default class BaseDataProvider {
         const loaded = this.definitions.map(({service, action, keyName, entityType}) => {
             if (!props[keyName] || !props[keyName].length) {
                 return service.query().then(res => {
-                    props.dispatch({type: action, payload: res, entityType});
+                    const actionReq = {type: action, payload: res, entityType};
+                    props.dispatch(actionReq);
+                    return res
                 });
             }
         });
-        return Promise.all(loaded); 
+        return Promise.all(loaded);
     }
 }

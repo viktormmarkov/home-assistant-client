@@ -2,7 +2,7 @@ import BaseDataProvider from "./baseDataProvider";
 import localeService from "../services/localeService";
 import categoryService from "../services/categoryService";
 
-class ProductModalDataProvider extends BaseDataProvider{
+class ProductModalDataProvider extends BaseDataProvider {
     constructor() {
         super();
         this.definitions = [{

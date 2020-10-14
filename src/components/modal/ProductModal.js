@@ -13,7 +13,6 @@ import { Button,
 import { connect } from 'react-redux';
 import Multiselect from "../common/Multiselect";
 import productService from '../../services/productService';
-import categoryService from '../../services/categoryService';
 import localeService from '../../services/localeService';
 import { Dropdown } from "../common";
 import ProductModalDataProvider from "../../dataProviders/ProductModalDataProvider";
@@ -144,9 +143,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  dispatch,
   dialogClose: () => {dispatch({type: 'DIALOG_CLOSE'})},
   productLoaded: (item) => {dispatch({type: 'ITEM_SAVED', payload: item, entityType: 'product'})},
+  dispatch,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductModal);

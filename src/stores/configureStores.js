@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
   dialog: dialogReducer,
   product: productReducer,
   category: categoryReducer,
-  locale: localeReducer
+  locale: localeReducer,
 });
 
-export const rootStore = createStore(rootReducer);
+export const rootStore = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());

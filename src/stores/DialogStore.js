@@ -18,7 +18,7 @@ const dialogReducer = function (state = initialState, action) {
           params: {}
         };
       default:
-        return initialState;
+        return state;
     }
   };
 
