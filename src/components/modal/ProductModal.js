@@ -49,6 +49,7 @@ class ProductModal extends React.Component {
       .messages({ok: 'Added Locale', error: 'Failed to add locale'});
   }
   render () {
+    // check why modal closes on initial load
     const {dialogClose, locales, categories} = this.props;
     const {product, language, translation} = this.state;
 
