@@ -28,7 +28,7 @@ class User extends Component {
       })
   }
   uploadImage = () => {
-    const formData = new FormData;
+    const formData = new FormData();
     formData.append('image', this.state.selectedFile, this.state.selectedFile.name);
     return userService.saveProfilePicture(formData).then(data => {
       console.log(data);
