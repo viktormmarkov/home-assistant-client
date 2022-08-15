@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { Button, Card, CardBody, Col, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import authenticationService from '../../services/authenticationService';
+import GoogleLogo from '../../logo.svg';
+
 class Login extends Component {
   constructor(props) {
     super(props);
     this.login = this.login.bind(this);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      showPassword: false
     }
   }
   login() {
@@ -34,10 +37,14 @@ class Login extends Component {
   }
 
   render() {
+    const {showPassword} = this.state;
     return (
       <Card className="p-4">
         <CardBody>
-        <Form>
+        <Form onSubmit={(e) => {
+          e.preventDefault();
+          this.login();
+        }}> 
           <h1>Login</h1>
           <p className="text-muted">Sign In to your account</p>
           <InputGroup className="mb-3">
@@ -61,7 +68,7 @@ class Login extends Component {
               </InputGroupText>
             </InputGroupAddon>
             <Input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               placeholder="Password"
               autoComplete="current-password"
               value={this.state.password}
@@ -70,8 +77,12 @@ class Login extends Component {
           </InputGroup>
           <Row>
             <Col xs="3">
-              <Button color="primary" className="px-4" onClick={this.login}>
+              <Button color="primary" className="px-4" onClick={this.login} type='submit'>
                 Login
+              </Button>
+              <Button>
+                <img src={GoogleLogo} alt="React Logo" />
+                Sign in with google
               </Button>
             </Col>
             {/* <Col xs="9" className="text-right">

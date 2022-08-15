@@ -264,7 +264,6 @@ function runDevServer(host, port, protocol) {
     proxy: {
       '/api': {
         target: 'http://localhost:3031',
-        pathRewrite: {'^/api' : ''},
         secure: false
       }
     }

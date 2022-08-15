@@ -163,9 +163,8 @@ class Campaign extends EntityBase {
               placeholder="Select Type"
               value={item.draft}
               onChange={selectedItem => {
-                  this.updateField("draft", selectedItem.value)
-                }
-              } />              
+                this.updateField("draft", selectedItem.value)
+              }} />              
         </FormGroup>
         <hr></hr>
         <Row>

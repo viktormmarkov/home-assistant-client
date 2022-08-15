@@ -17,7 +17,7 @@ import PromotionsAdd from './components/promotions/PromotionsAdd';
 import Campaigns from "./components/campaigns/Campaigns";
 import Campaign from "./components/campaigns/Campaign";
 import Shops from "./components/shops/Shops";
-import Shop from "./components/shops/Shop";
+import {Shop} from "./components/shops/Shop";
 import Locales from "./components/locales/Locales";
 import Locale from "./components/locales/Locale";
 
