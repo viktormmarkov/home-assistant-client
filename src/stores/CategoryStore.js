@@ -1,29 +1,34 @@
+import { createSlice, createSelector } from "@reduxjs/toolkit";
+
 const initialState = {
   list: [],
-}
-const entityType = 'category';
+};
+export const categorySlice = createSlice({
+  name: "category",
+  initialState,
+  reducers: {
+    listLoaded: (state, action) => {
+      return {
+        ...state,
+        list: [...action.payload],
+      };
+    },
+    itemSaved: (state, action) => {
+      return {
+        ...state,
+        list: [...state.list, ...action.payload],
+      };
+    },
+  },
+});
 
-const categoryReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case "LIST_LOADED":
-        if (action.entityType !== entityType) {
-          return {...state};
-        }
-        return {
-          ...state,
-          list: [...action.payload]
-        };
-      case "ITEM_SAVED":
-        if (action.entityType !== entityType) {
-          return {...state};
-        }
-        return {
-          ...state,
-          list: [...state.list, ...action.payload]
-        };
-      default:
-        return state;
-    }
-  };
+const categorySelector = (state) => state.category;
 
-export default categoryReducer;
+export const listSelector = createSelector(
+  categorySelector,
+  (category) => category.list
+);
+
+export const itemSelector = createSelector(listSelector, (items) => items[0]);
+
+export default categorySlice.reducer;

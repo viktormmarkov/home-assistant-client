@@ -7,7 +7,7 @@ import Products from './components/products/Products'
 import ProductsAdd from './components/products/ProductsAdd'
 import Product from "./components/products/Product";
 import Categories from './components/categories/Categories'
-import Category from './components/categories/Category'
+import {Category} from './components/categories/Category'
 import ShoppingLists from './components/shoppingLists/ShoppingLists'
 import ShoppingList from './components/shoppingLists/ShoppingList'
 import Preferences from "./components/preferences/Preferences";

@@ -73,6 +73,7 @@ class Promotions extends EntityListBaseComponent {
             <thead className="thead-light">
               <tr>
                 <th>Name</th>
+                <th>Shop</th>
                 <th>Date Created</th>
               </tr>
             </thead>
@@ -82,7 +83,7 @@ class Promotions extends EntityListBaseComponent {
                      return (
                        <tr key={item._id}>
                          <td><Link to={`/${entityName}/${item._id}`}>{item.name || 'Missing name'}</Link></td>
-                         <td>{item.createdAt}</td>
+                         <td>{item.shop}</td> <td>{item.createdAt}</td>
                        </tr>
                      )
                   }) 
