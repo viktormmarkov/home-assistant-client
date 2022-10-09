@@ -1,8 +1,5 @@
 
-import categoryService from "../../services/categoryService";
-import { useDispatch, useSelector } from "react-redux";
-import {categorySlice, listSelector} from '../../stores/CategoryStore'
-import React, { useEffect, useState} from "react";
+import React from "react";
 import { Table, Button } from 'reactstrap';
 import ItemRow from '../common/ItemRow';
 import { capitalize } from 'lodash';

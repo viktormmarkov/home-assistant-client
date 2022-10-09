@@ -112,12 +112,13 @@ class Campaign extends EntityBase {
   }
 
   render() {
-    const { promotions, item, shops} = this.state;
+    const { promotions, item, shops, id} = this.state;
     const { products } = this.props;
+
     return (
       <div className="animated fadeIn">
         <div className="section-header">
-          <h3 className="inline">Add Campaign</h3>
+          <h3 className="inline">{id === 'new' ? 'Add' : "Edit"} Campaign</h3>
           <EntityMenu saveItem={this.saveItem} deleteItem={this.deleteItem} entity={item} {...this.props}/>
           <Button onClick={this.props.openDialog} className="fright btn-sm entity-menu-button" color="primary">Add Product</Button>
         </div>
