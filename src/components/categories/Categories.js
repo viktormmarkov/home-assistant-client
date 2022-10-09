@@ -9,8 +9,6 @@ import { capitalize } from 'lodash';
 import { useHistory } from "react-router-dom";
 import { useGetCategoriesQuery } from "../../stores/CategoryQuery";
 
-const {listLoaded} = categorySlice.actions;
-
 const entityName = "categories";
 
 export const Categories = () => {
